@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
 import '../styles/form-main.css'
 
 export default function LoginPage() {
@@ -12,6 +13,7 @@ export default function LoginPage() {
     email: '',
     password: '',
   })
+  const [showPassword, setShowPassword] = useState(false)
 
   const onLogin = async (e) => {
     try {
@@ -20,12 +22,17 @@ export default function LoginPage() {
       console.log(response.data)
       router.push('/todos')
     } catch (error) {
-      console.error(error)
+      const message = error.response.data.error
+      console.log(message)
+      toast.error(message)
     }
   }
 
   return (
     <div className="wrapper">
+      <div>
+        <Toaster />
+      </div>
       <h2>Login</h2>
       <form>
         <div>
@@ -37,6 +44,7 @@ export default function LoginPage() {
               name="email"
               id="email"
               placeholder="email"
+              required
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
           </div>
@@ -44,12 +52,23 @@ export default function LoginPage() {
             <label htmlFor="password">Password</label>
             <br />
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               placeholder="Password"
+              required
               onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
+            <input
+              type="checkbox"
+              id="show-password"
+              onChange={(e) => {
+                setShowPassword(e.target.checked)
+              }}
+            />
+            <label htmlFor="show-password" className="password-toggle">
+              Show password
+            </label>
           </div>
         </div>
         <div className="button-wrapper">

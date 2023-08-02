@@ -31,6 +31,10 @@ label {
   width: 95%;
 }
 
+label.password-toggle {
+  font-size: 0.9rem;
+}
+
 .button-wrapper {
   text-align: center;
   margin: 12px auto;
