@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 
 connectDB()
 
-export default async function POST(request) {
+export async function POST(request) {
   try {
     const reqBody = await request.json()
     const { name, email, password } = reqBody

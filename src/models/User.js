@@ -1,6 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
 const userSchema = new Schema({
+  name: {
+    type: String,
+    required: [true, 'Please provide name'],
+  },
   email: {
     type: String,
     required: [true, 'Please provide email'],
@@ -12,6 +16,7 @@ const userSchema = new Schema({
   },
   isVerified: {
     type: Boolean,
+    required: true,
     default: false,
   },
   forgotPasswordToken: String,
@@ -20,4 +25,4 @@ const userSchema = new Schema({
   verifyTokenExpiry: Date,
 })
 
-export default mongoose.model('User', userSchema)
+export default mongoose.models.User || mongoose.model('User', userSchema)
