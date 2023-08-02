@@ -4,7 +4,14 @@ export function middleware(request) {
   const path = request.nextUrl.pathname
   const token = request.cookies.get('token')?.value || ''
   const publicPaths = ['/login', '/signup']
+  const privatePaths = ['/todos']
+
   const isPublicPath = publicPaths.includes(path)
+  const isPrivatePath = privatePaths.includes(path)
+
+  if (isPrivatePath && !token) {
+    NextResponse.redirect(new URL('/login', request.nextUrl))
+  }
 
   if (isPublicPath && token) {
     return NextResponse.redirect(new URL('/todos', request.nextUrl))
@@ -16,5 +23,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/', '/login', '/signup'],
+  matcher: ['/', '/login', '/signup', '/todos'],
 }
