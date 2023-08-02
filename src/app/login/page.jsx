@@ -19,7 +19,7 @@ export default function LoginPage() {
       console.log(response.data)
       router.push('/')
     } catch (error) {
-      console.error(err)
+      console.error(error)
     }
   }
 

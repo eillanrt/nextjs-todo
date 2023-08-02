@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { TodoForm } from '../components/TodoForm'
 import { TodoItem } from '../components/TodoItem'
 import axios from 'axios'
+import Link from 'next/link'
 
 export default function TodoPage() {
   const [todos, setTodos] = useState([])
@@ -42,6 +43,7 @@ export default function TodoPage() {
 
   return (
     <div>
+      <Link href="/api/logout">Log out</Link>
       <TodoForm
         submit={handleSubmit}
         value={todoValue}

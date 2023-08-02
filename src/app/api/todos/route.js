@@ -11,7 +11,7 @@ export async function GET(request) {
     const userId = getDataFromToken(request)
 
     const user = await User.findById(userId, { password: 0 })
-    const todos = await Todo.find()
+    const todos = await Todo.find({ _id: { $in: [user.todos] } })
 
     return NextResponse.json(todos)
   } catch (error) {
@@ -37,4 +37,11 @@ export async function POST(request) {
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
+}
+
+export async function DELETE(response) {
+  try {
+    const userId = getDataFromToken(request)
+    const { todoId } = await response.json()
+  } catch (err) {}
 }
