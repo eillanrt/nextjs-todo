@@ -43,7 +43,6 @@ export default function TodoPage() {
 
   return (
     <div>
-      <Link href="/api/logout">Log out</Link>
       <TodoForm
         submit={handleSubmit}
         value={todoValue}
