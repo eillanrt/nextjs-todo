@@ -1,0 +1,70 @@
+.wrapper {
+  border: solid black 1px;
+  width: 480px;
+  margin: 110px auto 25px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+}
+form {
+  width: 100%;
+}
+
+form > div {
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0 0 6px 12px;
+}
+
+#name,
+#password,
+#email {
+  padding: 12px;
+  margin: 7px 12px;
+  font-size: 1rem;
+  width: 95%;
+}
+
+.button-wrapper {
+  text-align: center;
+  margin: 12px auto;
+}
+
+button[type='submit'] {
+  background-color: #4caf50;
+  border-radius: 1rem;
+  border: none;
+  color: white;
+  padding: 7px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button[type='submit']:hover {
+  background-color: #43a047; /* Darker green */
+  color: white;
+}
+
+.wrapper footer {
+  font-size: 0.9rem;
+}
+
+.wrapper footer a {
+  color: black;
+}
+
+@media only screen and (max-width: 510px) {
+  .wrapper {
+    width: 90%;
+  }
+}

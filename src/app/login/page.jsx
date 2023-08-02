@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axios from 'axios'
+import '../styles/form-main.css'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -24,12 +25,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
+    <div className="wrapper">
       <h2>Login</h2>
       <form>
         <div>
           <div>
             <label htmlFor="email">Email</label>
+            <br />
             <input
               type="email"
               name="email"
@@ -40,6 +42,7 @@ export default function LoginPage() {
           </div>
           <div>
             <label htmlFor="password">Password</label>
+            <br />
             <input
               type="password"
               name="password"
@@ -49,13 +52,15 @@ export default function LoginPage() {
             />
           </div>
         </div>
-        <div>
+        <div className="button-wrapper">
           <button type="submit" onClick={onLogin}>
             Log In
           </button>
         </div>
-        <Link href="/signup">Create Account</Link>
       </form>
+      <footer>
+        No Account? <Link href="/signup">Create One</Link>
+      </footer>
     </div>
   )
 }

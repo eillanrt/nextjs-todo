@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import '../styles/form-main.css'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -24,12 +25,13 @@ export default function SignupPage() {
   }
 
   return (
-    <div>
+    <div className="wrapper">
       <h2>Create Account</h2>
       <form>
         <div>
           <div>
             <label htmlFor="name">Name</label>
+            <br />
             <input
               value={user.name}
               type="name"
@@ -65,13 +67,15 @@ export default function SignupPage() {
             />
           </div>
         </div>
-        <div>
+        <div className="button-wrapper">
           <button type="submit" onClick={onSignUp}>
             Create Account
           </button>
         </div>
       </form>
-      <Link href={'/login'}>Log in</Link>
+      <footer>
+        Already have an account? <Link href={'/login'}>Log in</Link>
+      </footer>
     </div>
   )
 }
