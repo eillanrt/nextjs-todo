@@ -7,6 +7,10 @@ export default function SignupPage() {
       <form>
         <div>
           <div>
+            <label htmlFor="name">Name</label>
+            <input type="name" name="name" id="name" placeholder="Your name" />
+          </div>
+          <div>
             <label htmlFor="email">Email</label>
             <input type="email" name="email" id="email" placeholder="email" />
           </div>
