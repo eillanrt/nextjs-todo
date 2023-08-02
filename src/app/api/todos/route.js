@@ -11,7 +11,7 @@ export async function GET(request) {
     const userId = getDataFromToken(request)
 
     const user = await User.findById(userId, { password: 0 })
-    const todos = await Todo.find({ _id: { $in: [user.todos] } })
+    const todos = await Todo.find({ _id: { $in: user.todos } })
 
     return NextResponse.json(todos)
   } catch (error) {

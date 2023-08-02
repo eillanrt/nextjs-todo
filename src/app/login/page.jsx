@@ -17,7 +17,7 @@ export default function LoginPage() {
       e.preventDefault()
       const response = await axios.post('/api/login', user)
       console.log(response.data)
-      router.push('/')
+      router.push('/todos')
     } catch (error) {
       console.error(error)
     }
