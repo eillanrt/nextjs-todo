@@ -13,10 +13,14 @@ export default function LoginPage() {
   })
 
   const onLogin = async (e) => {
-    e.preventDefault()
-    const response = await axios.post('/api/login', user)
-    console.log(response.data)
-    router.push('/')
+    try {
+      e.preventDefault()
+      const response = await axios.post('/api/login', user)
+      console.log(response.data)
+      router.push('/')
+    } catch (error) {
+      console.error(err)
+    }
   }
 
   return (

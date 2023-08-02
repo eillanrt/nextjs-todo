@@ -1,4 +1,4 @@
-import User from '@/models/User'
+import { User } from '@/models/User'
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/connectDB'
 import bcrypt from 'bcryptjs'
@@ -32,7 +32,7 @@ export async function POST(request) {
   })
 
   const response = NextResponse.json({
-    message: 'Login successfullt',
+    message: 'Login successfully',
     success: true,
   })
 

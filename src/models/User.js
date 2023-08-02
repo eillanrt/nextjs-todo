@@ -19,10 +19,16 @@ const userSchema = new Schema({
     required: true,
     default: false,
   },
+  todos: {
+    type: [mongoose.Types.ObjectId],
+    required: true,
+    default: [],
+  },
   forgotPasswordToken: String,
   forgotPasswordTokenExpiry: Date,
   verifyToken: String,
   verifyTokenExpiry: Date,
 })
 
-export default mongoose.models.User || mongoose.model('User', userSchema)
+export const User =
+  mongoose.models.User || mongoose.model('User', userSchema, 'users')
