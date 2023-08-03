@@ -25,6 +25,7 @@ export async function POST(request) {
     const { name } = await request.json()
     const userId = getDataFromToken(request)
     const newTodo = new Todo({ name })
+    await newTodo.validate()
     const savedTodo = await newTodo.save()
 
     const updatedUser = await User.findByIdAndUpdate(userId, {
@@ -35,6 +36,12 @@ export async function POST(request) {
       { status: 201 }
     )
   } catch (error) {
+    if (error._message === 'Todo validation failed') {
+      return NextResponse.json(
+        { error: 'Invalid Todo! Must be up to 30 characters only' },
+        { status: 400 }
+      )
+    }
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

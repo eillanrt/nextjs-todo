@@ -1,11 +1,11 @@
 import './styles.css'
 
-export function TodoForm({ submit, todoValue, onChange, numOfCharacters }) {
+export function TodoForm({ submit, value, onChange, numOfCharacters }) {
   return (
     <div className="add-todo-form-wrapper">
       <form>
         <input
-          value={todoValue}
+          value={value}
           maxLength="30"
           type="text"
           id="todo-input"

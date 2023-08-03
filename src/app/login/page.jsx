@@ -16,16 +16,19 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   const onLogin = async (e) => {
-    try {
-      e.preventDefault()
-      const response = await axios.post('/api/login', user)
-      console.log(response.data)
-      router.push('/todos')
-    } catch (error) {
-      const message = error.response.data.error
-      console.log(message)
-      toast.error(message)
-    }
+    e.preventDefault()
+
+    toast.promise(axios.post('/api/login', user), {
+      loading: 'Loggin in...',
+      success() {
+        router.push('/todos')
+        return <b>Log in succesful</b>
+      },
+      error(err) {
+        const message = err.response.data.error
+        return <b>{message}</b>
+      },
+    })
   }
 
   return (

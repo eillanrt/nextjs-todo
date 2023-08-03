@@ -5,7 +5,7 @@ import { TodoItem } from '../components/TodoItem'
 import { Header } from '../components/Header'
 import { Nav } from '../components/Nav'
 import axios from 'axios'
-import Link from 'next/link'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function TodoPage() {
   const [todos, setTodos] = useState([])
@@ -41,7 +41,7 @@ export default function TodoPage() {
       setTodos((prev) => [...prev, { _id, name, done }])
       setTodoValue('')
     } catch (error) {
-      console.error(error)
+      toast.error(error.response.data.error)
     }
   }
 
@@ -63,6 +63,9 @@ export default function TodoPage() {
 
   return (
     <div>
+      <div>
+        <Toaster />
+      </div>
       <Header name={userName}>
         <Nav />
       </Header>
