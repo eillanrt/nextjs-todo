@@ -13,7 +13,7 @@ export async function GET(request) {
     const user = await User.findById(userId, { password: 0 })
     const todos = await Todo.find({ _id: { $in: user.todos } })
 
-    return NextResponse.json(todos)
+    return NextResponse.json({ user, todos })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ error: error.message }, { status: 500 })

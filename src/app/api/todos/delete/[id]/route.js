@@ -8,7 +8,7 @@ export async function DELETE(request, { params }) {
     const todoId = params.id
     const userId = getDataFromToken(request)
 
-    const user = await User.findById(userId)
+    const user = await User.findById(userId, { password: 0 })
     const isAuthorized = user.todos.includes(todoId)
 
     if (!isAuthorized) {
@@ -16,6 +16,9 @@ export async function DELETE(request, { params }) {
     }
 
     const deletedTodo = await Todo.findByIdAndDelete(todoId)
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      $pull: { todos: deletedTodo._id },
+    })
 
     return NextResponse.json({ message: 'Deleted successfully', deletedTodo })
   } catch (error) {

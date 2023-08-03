@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { TodoForm } from '../components/TodoForm'
 import { TodoItem } from '../components/TodoItem'
+import { Header } from '../components/Header'
 import { Nav } from '../components/Nav'
 import axios from 'axios'
 import Link from 'next/link'
@@ -10,13 +11,18 @@ export default function TodoPage() {
   const [todos, setTodos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [todoValue, setTodoValue] = useState('')
+  const [userName, setUserName] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/todos')
         setIsLoading(false)
-        setTodos(response.data)
+
+        const { todos, user } = response.data
+        console.log(user)
+        setTodos(todos)
+        setUserName(user.name)
       } catch (error) {
         console.error(error)
       }
@@ -56,14 +62,16 @@ export default function TodoPage() {
 
   return (
     <div>
-      <Nav />
+      <Header name={userName}>
+        <Nav />
+      </Header>
       <TodoForm
         submit={handleSubmit}
         value={todoValue}
         onChange={(e) => setTodoValue(e.target.value)}
       />
       {isLoading && <h1>Loading</h1>}
-      <div>
+      <div className="todo-container">
         {todos.length === 0 && !isLoading ? (
           <h1>You have no todos</h1>
         ) : (
