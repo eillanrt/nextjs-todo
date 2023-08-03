@@ -7,15 +7,14 @@ connectDB()
 
 export async function POST(request) {
   try {
-    const reqBody = await request.json()
-    const { name, email, password } = reqBody
+    const { name, email, password } = await request.json()
 
     // check if user already exists
     const user = await User.findOne({ email })
     if (user) {
       return NextResponse.json(
         {
-          error: 'User already exists',
+          error: 'Email already taken',
         },
         { status: 400 }
       )
@@ -33,7 +32,7 @@ export async function POST(request) {
     return NextResponse.json(
       {
         message: 'User created',
-        data: savedUser,
+        success: true,
       },
       { status: 201 }
     )

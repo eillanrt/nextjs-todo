@@ -1,4 +1,4 @@
-import './TodoItem.css'
+import './index.css'
 
 export function TodoItem({ name, done, onDelete, onDone, id }) {
   return (

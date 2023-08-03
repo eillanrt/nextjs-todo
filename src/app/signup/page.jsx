@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
 import '../styles/form-main.css'
 
 export default function SignupPage() {
@@ -13,19 +14,25 @@ export default function SignupPage() {
     password: '',
   })
 
-  const onSignUp = async (event) => {
-    event.preventDefault()
-    try {
-      const response = await axios.post('/api/signup', user)
-      console.log(response)
-      router.push('/login')
-    } catch (error) {
-      console.error(error)
-    }
+  const onSignUp = (e) => {
+    e.preventDefault()
+    toast.promise(axios.post('/api/signup', user), {
+      loading: 'Processing...',
+      success() {
+        router.push('/login')
+        return <b>Account Created Successfully</b>
+      },
+      error(err) {
+        return <b>{err.response.data.error}</b>
+      },
+    })
   }
 
   return (
     <div className="wrapper">
+      <div>
+        <Toaster />
+      </div>
       <h2>Create Account</h2>
       <form>
         <div>
