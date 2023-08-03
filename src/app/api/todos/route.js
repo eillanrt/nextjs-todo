@@ -31,17 +31,10 @@ export async function POST(request) {
       $push: { todos: savedTodo._id },
     })
     return NextResponse.json(
-      { message: 'Added todo successfully' },
+      { message: 'Added todo successfully', savedTodo },
       { status: 201 }
     )
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
-}
-
-export async function DELETE(response) {
-  try {
-    const userId = getDataFromToken(request)
-    const { todoId } = await response.json()
-  } catch (err) {}
 }

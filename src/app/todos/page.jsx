@@ -29,15 +29,26 @@ export default function TodoPage() {
     try {
       const response = await axios.post('/api/todos', { name: todoValue })
       console.log(response)
-      setTodos((prev) => [
-        ...prev,
-        {
-          name: todoValue,
-          done: false,
-        },
-      ])
+      const { _id, name, done } = response.data.savedTodo
+
+      setTodos((prev) => [...prev, { _id, name, done }])
     } catch (error) {
       console.error(error)
+    }
+  }
+
+  const deleteTodo = async (id) => {
+    try {
+      const response = await axios.delete('/api/todos/delete/' + id)
+      console.log(response.data)
+      const deletedTodoId = response.data.deletedTodo._id
+      setTodos((prev) => {
+        return prev.filter(({ _id }) => {
+          return _id !== deletedTodoId
+        })
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -54,7 +65,13 @@ export default function TodoPage() {
           <h1>You have no todos</h1>
         ) : (
           todos.map((todo, i) => (
-            <TodoItem key={i} name={todo.name} done={todo.done} />
+            <TodoItem
+              key={i}
+              id={todo._id}
+              name={todo.name}
+              done={todo.done}
+              onDelete={() => deleteTodo(todo._id)}
+            />
           ))
         )}
       </div>
