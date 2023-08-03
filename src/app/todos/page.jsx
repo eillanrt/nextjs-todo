@@ -25,10 +25,10 @@ export default function TodoPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('submit todo')
+
     try {
       const response = await axios.post('/api/todos', { name: todoValue })
-      console.log(response)
+
       const { _id, name, done } = response.data.savedTodo
 
       setTodos((prev) => [...prev, { _id, name, done }])
@@ -40,8 +40,9 @@ export default function TodoPage() {
   const deleteTodo = async (id) => {
     try {
       const response = await axios.delete('/api/todos/delete/' + id)
-      console.log(response.data)
+
       const deletedTodoId = response.data.deletedTodo._id
+
       setTodos((prev) => {
         return prev.filter(({ _id }) => {
           return _id !== deletedTodoId
