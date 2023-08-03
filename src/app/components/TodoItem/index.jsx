@@ -12,7 +12,15 @@ export function TodoItem({ name, done, onDelete, onDone, id }) {
         {name}
       </h1>
       <footer>
-        <input type="checkbox" onChange={onDone} checked={done} />
+        <div>
+          <input
+            type="checkbox"
+            onChange={onDone}
+            id="todo-done"
+            checked={done}
+          />
+          <label htmlFor="todo-done">Done</label>
+        </div>
         <button id={`del-${id}-btn`} className="todo-delete" onClick={onDelete}>
           Delete
         </button>

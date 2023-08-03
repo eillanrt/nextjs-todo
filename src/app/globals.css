@@ -14,4 +14,9 @@ html {
 .todo-container {
   width: 520px;
   margin: 25px auto;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
 }

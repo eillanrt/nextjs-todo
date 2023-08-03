@@ -1,5 +1,23 @@
 .todo-item {
   border: solid red 1px;
+  margin: 0 0 25px;
+}
+
+.todo-item #todo-done {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+}
+.todo-item #todo-done:checked {
+  background: #ff0000;
+}
+
+.todo-name {
+  margin: 14px 12px;
+  text-align: center;
 }
 
 .todo-delete {
@@ -21,14 +39,9 @@
   color: white;
 }
 
-.todo-item input[type='checkbox'] {
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 5px;
-  border: 2px solid #555;
-}
-.todo-item input[type='checkbox']:checked {
-  background: #ff0000;
+.todo-item footer {
+  margin: auto;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
 }
