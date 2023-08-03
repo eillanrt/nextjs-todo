@@ -9,8 +9,8 @@ export function LogoutBtn() {
     router.push(response.data.redirect)
   }
   return (
-    <div>
-      <button onClick={logOut}>Logout</button>
-    </div>
+    <button onClick={logOut} className="nav-link">
+      Logout
+    </button>
   )
 }

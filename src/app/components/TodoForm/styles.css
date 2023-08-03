@@ -1,35 +1,64 @@
+/* CSS for the add-todo-form-wrapper container */
 .add-todo-form-wrapper {
-  border: solid green 1px;
-  margin: 40px auto;
-  width: 520px;
-  padding: 12px 8px;
+  width: 300px;
+  padding: 20px;
+  margin: 50px auto;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.add-todo-form-wrapper form {
-  text-align: center;
+/* CSS for the form */
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-#todo-input {
-  padding: 16px 12px;
-  width: 100%;
-  font-size: 1.2rem;
+/* CSS for the input field */
+input[type='text'] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
+/* CSS for the character count paragraph */
+p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #888;
+}
+
+/* CSS for the Add button */
 .add-todo {
-  background-color: #4caf50;
-  border-radius: 12px;
+  background-color: #008cba;
+  color: #fff;
   border: none;
-  color: white;
-  padding: 8px 24px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.1rem;
-  margin: 12px 2px 2px;
+  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
 }
 
+/* Hover effect for the Add button */
 .add-todo:hover {
-  background-color: #43a047; /* Darker green */
-  color: white;
+  background-color: #007a99;
+}
+
+@media screen and (max-width: 480px) {
+  .add-todo-form-wrapper {
+    width: 100%;
+    padding: 15px;
+  }
+
+  input[type='text'] {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .add-todo {
+    padding: 8px;
+  }
 }

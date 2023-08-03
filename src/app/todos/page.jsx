@@ -3,15 +3,17 @@ import { useState, useEffect } from 'react'
 import { TodoForm } from '../components/TodoForm'
 import { TodoItem } from '../components/TodoItem'
 import { Header } from '../components/Header'
-import { Nav } from '../components/Nav'
+import { NavLinks } from '../components/NavLinks'
+import { ProfileLink } from '../components/ProfileLink'
+import { LogoutBtn } from '../components/LogoutBtn'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 
 export default function TodoPage() {
   const [todos, setTodos] = useState([])
+  const [user, setUser] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [todoValue, setTodoValue] = useState('')
-  const [userName, setUserName] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +24,7 @@ export default function TodoPage() {
         const { todos, user } = response.data
 
         setTodos(todos)
-        setUserName(user.name)
+        setUser(user)
       } catch (error) {
         console.error(error)
       }
@@ -100,8 +102,11 @@ export default function TodoPage() {
       <div>
         <Toaster />
       </div>
-      <Header name={userName}>
-        <Nav />
+      <Header name={user.name}>
+        <NavLinks>
+          <LogoutBtn />
+          <ProfileLink href={'/profile/' + user._id}>Your Profile</ProfileLink>
+        </NavLinks>
       </Header>
       <TodoForm
         submit={handleSubmit}
@@ -111,8 +116,8 @@ export default function TodoPage() {
           setTodoValue(e.target.value)
         }}
       />
-      {isLoading && <h1>Loading</h1>}
       <div className="todo-container">
+        {isLoading && <h1>Loading</h1>}
         {todos.length === 0 && !isLoading ? (
           <h1>You have no todos</h1>
         ) : (

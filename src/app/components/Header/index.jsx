@@ -1,6 +1,8 @@
+import './styles.css'
+
 export function Header({ children, name }) {
   return (
-    <header>
+    <header className="main-header">
       <h1>Welcome {name}!</h1>
       {children}
     </header>
