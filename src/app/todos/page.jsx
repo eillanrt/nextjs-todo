@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { TodoForm } from '../components/TodoForm'
 import { TodoItem } from '../components/TodoItem'
+import { Nav } from '../components/Nav'
 import axios from 'axios'
 import Link from 'next/link'
 
@@ -55,6 +56,7 @@ export default function TodoPage() {
 
   return (
     <div>
+      <Nav />
       <TodoForm
         submit={handleSubmit}
         value={todoValue}
