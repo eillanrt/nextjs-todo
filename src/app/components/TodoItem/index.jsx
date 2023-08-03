@@ -1,9 +1,10 @@
 export function TodoItem({ name, done, onDelete, id }) {
   return (
-    <div id={id}>
-      <p>{name}</p>
-      <p>{id}</p>
-      <button onClick={onDelete}>Delete</button>
+    <div className="todo-item">
+      <h1 className="todo-name">{name}</h1>
+      <button className="todo-delete" onClick={onDelete}>
+        Delete
+      </button>
     </div>
   )
 }

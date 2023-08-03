@@ -1,0 +1,35 @@
+.add-todo-form-wrapper {
+  border: solid green 1px;
+  margin: 40px auto;
+  width: 520px;
+  padding: 12px 8px;
+}
+
+.add-todo-form-wrapper form {
+  text-align: center;
+}
+
+#todo-input {
+  padding: 16px 12px;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.add-todo {
+  background-color: #4caf50;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.1rem;
+  margin: 12px 2px 2px;
+  cursor: pointer;
+}
+
+.add-todo:hover {
+  background-color: #43a047; /* Darker green */
+  color: white;
+}

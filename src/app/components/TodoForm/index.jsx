@@ -1,20 +1,26 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import './styles.css'
 
-export function TodoForm({ submit, todoValue, onChange }) {
-  //const submit = async (e) => {}
-
+export function TodoForm({ submit, todoValue, onChange, numOfCharacters }) {
   return (
-    <div>
+    <div className="add-todo-form-wrapper">
       <form>
         <input
           value={todoValue}
+          maxLength="30"
           type="text"
+          id="todo-input"
           name="name"
           placeholder="Enter todo"
           onChange={onChange}
         />
-        <input onClick={submit} type="submit" value="Add" />
+        <br />
+        <p>{numOfCharacters}/30 Characters left</p>
+        <input
+          onClick={submit}
+          className="add-todo"
+          type="submit"
+          value="Add"
+        />
       </form>
     </div>
   )

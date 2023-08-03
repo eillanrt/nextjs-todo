@@ -39,6 +39,7 @@ export default function TodoPage() {
       const { _id, name, done } = response.data.savedTodo
 
       setTodos((prev) => [...prev, { _id, name, done }])
+      setTodoValue('')
     } catch (error) {
       console.error(error)
     }
@@ -68,7 +69,10 @@ export default function TodoPage() {
       <TodoForm
         submit={handleSubmit}
         value={todoValue}
-        onChange={(e) => setTodoValue(e.target.value)}
+        numOfCharacters={todoValue.length}
+        onChange={(e) => {
+          setTodoValue(e.target.value)
+        }}
       />
       {isLoading && <h1>Loading</h1>}
       <div className="todo-container">
