@@ -80,7 +80,7 @@ export default function TodoPage() {
 
   const onDone = async (id, e) => {
     console.log(e.target.checked)
-    const response = await axios.put('/api/todos', { todoId: id })
+    const response = await axios.put('/api/todos/done/' + id)
 
     setTodos((prev) => {
       return prev.map((todo) => {
