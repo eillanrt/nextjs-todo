@@ -38,10 +38,33 @@ export async function POST(request) {
   } catch (error) {
     if (error._message === 'Todo validation failed') {
       return NextResponse.json(
-        { error: 'Invalid Todo! Must be up to 30 characters only' },
+        { error: 'Invalid Todo! Must be 1-30 characters only' },
         { status: 400 }
       )
     }
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+}
+
+export async function PUT(request) {
+  try {
+    const { todoId } = await request.json()
+    const userId = getDataFromToken(request)
+    const user = await User.findById(userId, { password: 0 })
+
+    const isAuthorized = user.todos.includes(todoId)
+
+    if (!isAuthorized) {
+      return NextResponse.json({ error: 'Not authorized' }, { status: 401 })
+    }
+
+    const todo = await Todo.findById(todoId)
+
+    todo.done = !todo.done
+    const updatedTodo = await todo.save()
+
+    return NextResponse.json({ updatedTodo })
+  } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

@@ -20,7 +20,7 @@ export default function TodoPage() {
         setIsLoading(false)
 
         const { todos, user } = response.data
-        console.log(user)
+
         setTodos(todos)
         setUserName(user.name)
       } catch (error) {
@@ -33,32 +33,66 @@ export default function TodoPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    try {
-      const response = await axios.post('/api/todos', { name: todoValue })
+    toast.promise(axios.post('/api/todos', { name: todoValue }), {
+      loading: 'Adding...',
+      success(response) {
+        const { _id, name, done } = response.data.savedTodo
 
-      const { _id, name, done } = response.data.savedTodo
+        setTodos((prev) => [...prev, { _id, name, done }])
+        setTodoValue('')
 
-      setTodos((prev) => [...prev, { _id, name, done }])
-      setTodoValue('')
-    } catch (error) {
-      toast.error(error.response.data.error)
-    }
+        return <b>{response.data.message}</b>
+      },
+      error(err) {
+        return <b>{err.response.data.error}</b>
+      },
+    })
   }
 
-  const deleteTodo = async (id) => {
-    try {
-      const response = await axios.delete('/api/todos/delete/' + id)
+  const deleteTodo = (id) => {
+    toast.promise(axios.delete('/api/todos/delete/' + id), {
+      loading() {
+        document.getElementById(`del-${id}-btn`).disabled = true
+        return <b>Deleting...</b>
+      },
+      success(response) {
+        const deletedTodoId = response.data.deletedTodo._id
 
-      const deletedTodoId = response.data.deletedTodo._id
-
-      setTodos((prev) => {
-        return prev.filter(({ _id }) => {
-          return _id !== deletedTodoId
+        setTodos((prev) => {
+          return prev.filter(({ _id }) => {
+            return _id !== deletedTodoId
+          })
         })
+
+        const deleteTodoBtns = document.querySelectorAll('.todo-delete')
+
+        deleteTodoBtns.forEach((btn) => {
+          btn.disabled = false
+        })
+
+        return <b>{response.data.message}</b>
+      },
+      error(err) {
+        return <b>{err.response.data.error}</b>
+      },
+    })
+  }
+
+  const onDone = async (id, e) => {
+    console.log(e.target.checked)
+    const response = await axios.put('/api/todos', { todoId: id })
+
+    setTodos((prev) => {
+      return prev.map((todo) => {
+        if (todo._id === id) {
+          return {
+            ...todo,
+            done: !todo.done,
+          }
+        }
+        return todo
       })
-    } catch (error) {
-      console.log(error)
-    }
+    })
   }
 
   return (
@@ -88,6 +122,7 @@ export default function TodoPage() {
               id={todo._id}
               name={todo.name}
               done={todo.done}
+              onDone={(e) => onDone(todo._id, e)}
               onDelete={() => deleteTodo(todo._id)}
             />
           ))

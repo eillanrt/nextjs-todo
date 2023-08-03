@@ -10,3 +10,8 @@
 html {
   font-size: 16px;
 }
+
+.todo-container {
+  width: 520px;
+  margin: 25px auto;
+}

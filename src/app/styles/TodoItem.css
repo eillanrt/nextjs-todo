@@ -1,0 +1,34 @@
+.todo-item {
+  border: solid red 1px;
+}
+
+.todo-delete {
+  background-color: #df3713;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.todo-delete:hover {
+  background-color: #d90000; /* Darker red */
+  color: white;
+}
+
+.todo-item input[type='checkbox'] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+}
+.todo-item input[type='checkbox']:checked {
+  background: #ff0000;
+}
