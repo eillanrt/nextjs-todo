@@ -15,6 +15,7 @@ export function DeleteAccount({ id, onSubmit, onChange, value }) {
           </label>
           <input
             type="password"
+            placeholder="Password"
             value={value}
             onChange={onChange}
             className="password"
