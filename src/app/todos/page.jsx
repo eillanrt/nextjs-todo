@@ -7,6 +7,7 @@ import { NavLinks } from '../components/NavLinks'
 import { ProfileLink } from '../components/ProfileLink'
 import { LogoutBtn } from '../components/LogoutBtn'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -118,8 +119,11 @@ export default function TodoPage() {
       </div>
       <Header name={user.name}>
         <NavLinks>
-          <LogoutBtn onLogout={onLogout} />
+          <Link href="/todos" className="nav-link">
+            Todos
+          </Link>
           <ProfileLink href="/profile" />
+          <LogoutBtn onLogout={onLogout} />
         </NavLinks>
       </Header>
       <TodoForm
