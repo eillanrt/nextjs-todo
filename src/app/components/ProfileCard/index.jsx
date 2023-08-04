@@ -1,6 +1,6 @@
 import './styles.css'
 
-export function ProfileCard({ name, email, id, isVerified, todos }) {
+export function ProfileCard({ name, email, id, joinedAt, isVerified, todos }) {
   const doneTodos = todos.filter((todo) => todo.done).length
 
   return (
@@ -9,6 +9,7 @@ export function ProfileCard({ name, email, id, isVerified, todos }) {
       <ul className="profile-data">
         <li>Email: {email}</li>
         <li>userID: {id}</li>
+        <li>Joined: {joinedAt}</li>
         <li>
           {isVerified
             ? 'Your email address is verified'

@@ -61,7 +61,6 @@ export default function ProfilePage() {
           return <b>{response.data.message}</b>
         },
         error(err) {
-          console.log(err)
           return <b>{err.response.data.error}</b>
         },
       }
@@ -86,6 +85,7 @@ export default function ProfilePage() {
         name={user.name}
         email={user.email}
         verified={user.isVerified}
+        joinedAt={user.createdAt}
         id={user._id}
         todos={todos}
       />
