@@ -14,6 +14,12 @@ export async function POST(request) {
       throw new Error('Error 400', { cause: 'Password mismatch' })
     }
 
+    if (password.length < 8) {
+      throw new Error('Error 400', {
+        cause: 'Password must be at least 8 character long',
+      })
+    }
+
     if (!isEmail(email)) {
       throw new Error('Error 400', { cause: 'Not a valid email address' })
     }
