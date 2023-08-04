@@ -38,7 +38,7 @@ export async function POST(request) {
     return response
   } catch (error) {
     // If error is from the user side
-    const userErrorPattern = /^Error (\d{3})/
+    const userErrorPattern = /^Error (4\d{2})/
 
     if (userErrorPattern.test(error.message)) {
       const errStatus = Number(error.message.match(userErrorPattern)[1])

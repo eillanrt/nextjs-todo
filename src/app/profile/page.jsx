@@ -9,11 +9,13 @@ import Link from 'next/link'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
 import { ProfileCard } from '../components/ProfileCard'
+import { DeleteAccount } from '../components/DeleteAccount'
 
 export default function ProfilePage() {
   const router = useRouter()
   const [user, setUser] = useState({})
   const [todos, setTodos] = useState([])
+  const [deleteAccountPassword, setDeleteAccountPassword] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +27,6 @@ export default function ProfilePage() {
 
         setTodos(todos)
         setUser(user)
-        console.log(user)
       } catch (error) {
         console.error(error)
       }
@@ -45,6 +46,28 @@ export default function ProfilePage() {
       },
     })
   }
+
+  const onDeleteAccount = (id) => {
+    toast.promise(
+      axios.delete('/api/account/delete/' + `${id}/${deleteAccountPassword}`, {
+        name: 'dd',
+      }),
+      {
+        loading() {
+          return <b>Deleting your data...</b>
+        },
+        success(response) {
+          router.push('/login')
+          return <b>{response.data.message}</b>
+        },
+        error(err) {
+          console.log(err)
+          return <b>{err.response.data.error}</b>
+        },
+      }
+    )
+  }
+
   return (
     <div>
       <div>
@@ -62,9 +85,17 @@ export default function ProfilePage() {
       <ProfileCard
         name={user.name}
         email={user.email}
-        verified={user.verified}
+        verified={user.isVerified}
         id={user._id}
         todos={todos}
+      />
+      <DeleteAccount
+        value={deleteAccountPassword}
+        onChange={(e) => setDeleteAccountPassword(e.target.value)}
+        onSubmit={(e) => {
+          e.preventDefault()
+          onDeleteAccount(user._id)
+        }}
       />
     </div>
   )

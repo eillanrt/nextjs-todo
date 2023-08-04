@@ -1,4 +1,4 @@
-.wrapper {
+.main-form-wrapper {
   border: solid black 1px;
   width: 480px;
   margin: 110px auto 25px;
@@ -8,21 +8,20 @@
   align-items: center;
   border-radius: 20px;
 }
-form {
+.main-form-wrapper form {
   width: 100%;
 }
 
-form > div {
+.main-form-wrapper form > div {
   width: 100%;
 }
 
-label {
+.main-form-wrapper label {
   font-weight: bold;
   font-size: 1.2rem;
   margin: 0 0 6px 12px;
 }
-
-#name,
+.main-form-wrapper #name,
 #password,
 #email,
 .password {
@@ -32,16 +31,16 @@ label {
   width: 95%;
 }
 
-label.password-toggle {
+.main-form-wrapper label.password-toggle {
   font-size: 0.9rem;
 }
 
-.button-wrapper {
+.main-form-wrapper .button-wrapper {
   text-align: center;
   margin: 12px auto;
 }
 
-button[type='submit'] {
+.main-form-wrapper button[type='submit'] {
   background-color: #4caf50;
   border-radius: 1rem;
   border: none;
@@ -55,21 +54,21 @@ button[type='submit'] {
   cursor: pointer;
 }
 
-button[type='submit']:hover {
+.main-form-wrapper button[type='submit']:hover {
   background-color: #43a047; /* Darker green */
   color: white;
 }
 
-.wrapper footer {
+.main-form-wrapper footer {
   font-size: 0.9rem;
 }
 
-.wrapper footer a {
+.main-form-wrapper footer a {
   color: black;
 }
 
 @media only screen and (max-width: 510px) {
-  .wrapper {
+  .main-form-wrapper {
     width: 90%;
   }
 }

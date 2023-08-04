@@ -1,6 +1,6 @@
 import './styles.css'
 
-export function ProfileCard({ name, email, id, verified, todos }) {
+export function ProfileCard({ name, email, id, isVerified, todos }) {
   const doneTodos = todos.filter((todo) => todo.done).length
 
   return (
@@ -10,7 +10,7 @@ export function ProfileCard({ name, email, id, verified, todos }) {
         <li>Email: {email}</li>
         <li>userID: {id}</li>
         <li>
-          {verified
+          {isVerified
             ? 'Your email address is verified'
             : 'Your email address is not verified'}
         </li>

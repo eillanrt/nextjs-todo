@@ -1,0 +1,51 @@
+.delete-account-wrap {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.delete-account-wrap h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.delete-account-wrap p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.delete-account-wrap form div {
+  margin-bottom: 20px;
+}
+
+.delete-account-wrap label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.delete-account-wrap input.password {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin: 12px;
+}
+
+.delete-account-wrap .delete-account-button {
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Media Query for Small Screens (less than 600px) */
+@media screen and (max-width: 600px) {
+  .delete-account-wrap {
+    max-width: 100%;
+  }
+}
