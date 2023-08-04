@@ -21,6 +21,7 @@ export default function SignupPage() {
 
   const onSignUp = (e) => {
     e.preventDefault()
+
     toast.promise(axios.post('/api/signup', user), {
       loading: <b>Processing...</b>,
       success(response) {
