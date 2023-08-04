@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+import { ProfileCard } from '../components/ProfileCard'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -24,6 +25,7 @@ export default function ProfilePage() {
 
         setTodos(todos)
         setUser(user)
+        console.log(user)
       } catch (error) {
         console.error(error)
       }
@@ -57,6 +59,13 @@ export default function ProfilePage() {
           <LogoutBtn onLogout={onLogout} />
         </NavLinks>
       </Header>
+      <ProfileCard
+        name={user.name}
+        email={user.email}
+        verified={user.verified}
+        id={user._id}
+        todos={todos}
+      />
     </div>
   )
 }
