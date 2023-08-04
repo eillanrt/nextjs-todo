@@ -16,7 +16,7 @@ export async function POST(request) {
 
     if (password.length < 8) {
       throw new Error('Error 400', {
-        cause: 'Password must be at least 8 characters long',
+        cause: 'Password must be at least 8 character long',
       })
     }
 
