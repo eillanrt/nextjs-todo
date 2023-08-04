@@ -24,7 +24,8 @@ label {
 
 #name,
 #password,
-#email {
+#email,
+.password {
   padding: 12px;
   margin: 7px 12px;
   font-size: 1rem;
