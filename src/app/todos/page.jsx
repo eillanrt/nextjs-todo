@@ -6,10 +6,12 @@ import { Header } from '../components/Header'
 import { NavLinks } from '../components/NavLinks'
 import { ProfileLink } from '../components/ProfileLink'
 import { LogoutBtn } from '../components/LogoutBtn'
+import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 
 export default function TodoPage() {
+  const router = useRouter()
   const [todos, setTodos] = useState([])
   const [user, setUser] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -32,11 +34,11 @@ export default function TodoPage() {
     fetchData()
   }, [])
 
-  const handleSubmit = async (e) => {
+  const addTodo = async (e) => {
     e.preventDefault()
 
     toast.promise(axios.post('/api/todos', { name: todoValue }), {
-      loading: 'Adding...',
+      loading: <b>Adding...</b>,
       success(response) {
         const { _id, name, done } = response.data.savedTodo
 
@@ -81,7 +83,6 @@ export default function TodoPage() {
   }
 
   const onDone = async (id, e) => {
-    console.log(e.target.checked)
     const response = await axios.put('/api/todos/done/' + id)
 
     setTodos((prev) => {
@@ -97,6 +98,19 @@ export default function TodoPage() {
     })
   }
 
+  const onLogout = () => {
+    toast.promise(axios.post('/api/logout'), {
+      loading: <b>Logging out...</b>,
+      success(response) {
+        router.push('/login')
+        return <b>{response.data.message}</b>
+      },
+      error(err) {
+        return <b>{err.response.data.error}</b>
+      },
+    })
+  }
+
   return (
     <div>
       <div>
@@ -104,12 +118,12 @@ export default function TodoPage() {
       </div>
       <Header name={user.name}>
         <NavLinks>
-          <LogoutBtn />
-          <ProfileLink href={'/profile/' + user._id}>Your Profile</ProfileLink>
+          <LogoutBtn onLogout={onLogout} />
+          <ProfileLink href="/profile" />
         </NavLinks>
       </Header>
       <TodoForm
-        submit={handleSubmit}
+        submit={addTodo}
         value={todoValue}
         numOfCharacters={todoValue.length}
         onChange={(e) => {

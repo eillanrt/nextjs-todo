@@ -4,7 +4,7 @@ import Link from 'next/link'
 export function ProfileLink({ href, children }) {
   return (
     <Link className="nav-link" href={href}>
-      {children}
+      Profile
     </Link>
   )
 }

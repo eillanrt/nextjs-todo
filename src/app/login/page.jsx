@@ -19,14 +19,13 @@ export default function LoginPage() {
     e.preventDefault()
 
     toast.promise(axios.post('/api/login', user), {
-      loading: 'Loggin in...',
+      loading: <b>Logging in...</b>,
       success() {
         router.push('/todos')
         return <b>Log in succesful</b>
       },
       error(err) {
-        const message = err.response.data.error
-        return <b>{message}</b>
+        return <b>{err.response.data.error}</b>
       },
     })
   }

@@ -17,7 +17,7 @@ export default function SignupPage() {
   const onSignUp = (e) => {
     e.preventDefault()
     toast.promise(axios.post('/api/signup', user), {
-      loading: 'Processing...',
+      loading: <b>Processing...</b>,
       success() {
         router.push('/login')
         return <b>Account Created Successfully</b>
