@@ -46,6 +46,7 @@ export default function SignupPage() {
             <br />
             <input
               value={user.name}
+              maxLength="20"
               type="name"
               name="name"
               id="name"
@@ -71,6 +72,7 @@ export default function SignupPage() {
             <input
               value={user.password}
               type={showPassword ? 'text' : 'password'}
+              minLength="8"
               name="password"
               id="password"
               placeholder="Password"
@@ -94,6 +96,7 @@ export default function SignupPage() {
             <input
               value={user.confirmPassword}
               type={showConfirmPassword ? 'text' : 'password'}
+              minLength="8"
               name="show-password"
               id="show-password"
               placeholder="Confirm password"
