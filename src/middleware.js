@@ -4,7 +4,7 @@ export function middleware(request) {
   const path = request.nextUrl.pathname
   const token = request.cookies.get('token')?.value || ''
   const publicPaths = ['/login', '/signup']
-  const privatePaths = ['/todos', '/profile', '/api/todos/delete/:id']
+  const privatePaths = ['/todos', '/profile', '/api/todos/:path*']
 
   const isPublicPath = publicPaths.includes(path)
   const isPrivatePath = privatePaths.includes(path)
@@ -29,6 +29,6 @@ export const config = {
     '/signup',
     '/todos',
     '/profile',
-    '/api/todos/delete/:id*',
+    '/api/todos/:path*',
   ],
 }
