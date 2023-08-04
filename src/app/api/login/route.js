@@ -10,7 +10,7 @@ export async function POST(request) {
   try {
     const { email, password } = await request.json()
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email: email.toLowercase() })
     if (!user) {
       throw new Error('Error 400', { cause: 'Account does not exist' })
     }
@@ -23,8 +23,6 @@ export async function POST(request) {
 
     const tokenData = {
       id: user._id,
-      name: user.name,
-      email: user.email,
     }
 
     const token = jwt.sign(tokenData, process.env.SECRET_TOKEN, {

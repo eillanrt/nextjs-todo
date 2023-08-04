@@ -31,7 +31,7 @@ export async function POST(request) {
     }
 
     // check if user already exists
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email: email.toLowerCase() })
 
     if (user) {
       throw new Error('Error 400', { cause: 'Email address already taken' })
@@ -43,7 +43,7 @@ export async function POST(request) {
 
     const newUser = new User({
       name,
-      email,
+      email: email.toLowerCase(),
       password: hashedPassword,
     })
 

@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
-import { getDataFromToken } from '@/getDataFromToken'
+import { getUserIdFromToken } from '@/getUserIdFromToken'
 import { Todo } from '@/models/Todo'
 import { User } from '@/models/User'
 
 export async function DELETE(request, { params }) {
   try {
     const todoId = params.id
-    const userId = getDataFromToken(request)
+    const userId = getUserIdFromToken(request)
 
     const user = await User.findById(userId, { password: 0 })
     const isAuthorized = user.todos.includes(todoId)

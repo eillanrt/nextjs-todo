@@ -1,4 +1,4 @@
-import { getDataFromToken } from '@/getDataFromToken'
+import { getUserIdFromToken } from '@/getUserIdFromToken'
 import { User } from '@/models/User'
 import { Todo } from '@/models/Todo'
 import { NextResponse } from 'next/server'
@@ -8,7 +8,7 @@ connectDB()
 
 export async function GET(request) {
   try {
-    const userId = getDataFromToken(request)
+    const userId = getUserIdFromToken(request)
 
     const user = await User.findById(userId, { password: 0 })
     const todos = await Todo.find({ _id: { $in: user.todos } })
@@ -22,7 +22,7 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const { name } = await request.json()
-    const userId = getDataFromToken(request)
+    const userId = getUserIdFromToken(request)
     const newTodo = new Todo({ name })
     await newTodo.validate()
     const savedTodo = await newTodo.save()
