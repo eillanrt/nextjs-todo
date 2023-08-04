@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react'
 import { Header } from '../components/Header'
 import { NavLinks } from '../components/NavLinks'
 import { ProfileLink } from '../components/ProfileLink'
+import { ProfileCard } from '../components/ProfileCard'
+import { DeleteAccount } from '../components/DeleteAccount'
 import { LogoutBtn } from '../components/LogoutBtn'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
-import { ProfileCard } from '../components/ProfileCard'
-import { DeleteAccount } from '../components/DeleteAccount'
+import { formatMongooseTimestamp } from '@/formatMongooseTimestamp'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -84,8 +85,8 @@ export default function ProfilePage() {
       <ProfileCard
         name={user.name}
         email={user.email}
-        verified={user.isVerified}
-        joinedAt={user.createdAt}
+        isVerified={user.isVerified}
+        joinedAt={formatMongooseTimestamp(user.createdAt)}
         id={user._id}
         todos={todos}
       />
