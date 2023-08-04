@@ -92,13 +92,13 @@ export default function SignupPage() {
             </label>
           </div>
           <div>
-            <label htmlFor="show-password">Confirm Password</label>
+            <label htmlFor="confirm-password">Confirm Password</label>
             <input
               value={user.confirmPassword}
               type={showConfirmPassword ? 'text' : 'password'}
               minLength="8"
-              name="show-password"
-              id="show-password"
+              name="confirm-password"
+              id="confirm-password"
               placeholder="Confirm password"
               className="password"
               required
@@ -108,12 +108,12 @@ export default function SignupPage() {
             />
             <input
               type="checkbox"
-              id="show-password"
+              id="show-confirm-password"
               onChange={(e) => {
                 setShowConfirmPassword(e.target.checked)
               }}
             />
-            <label htmlFor="show-password" className="password-toggle">
+            <label htmlFor="show-confirm-password" className="password-toggle">
               Show password
             </label>
           </div>
