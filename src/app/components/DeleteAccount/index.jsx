@@ -1,6 +1,6 @@
 import './styles.css'
 
-export function DeleteAccount({ onSubmit, onChange, value }) {
+export function DeleteAccount({ id, onSubmit, onChange, value }) {
   return (
     <div className="delete-account-wrap">
       <h1>Delete your account</h1>
@@ -19,7 +19,11 @@ export function DeleteAccount({ onSubmit, onChange, value }) {
             onChange={onChange}
             className="password"
           />
-          <button type="submit" className="delete-account-button">
+          <button
+            type="submit"
+            id={`del-${id}-account-btn`}
+            className="delete-account-button"
+          >
             Delete my account
           </button>
         </div>

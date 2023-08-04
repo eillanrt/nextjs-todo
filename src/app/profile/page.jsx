@@ -50,14 +50,14 @@ export default function ProfilePage() {
 
   const onDeleteAccount = (id) => {
     toast.promise(
-      axios.delete('/api/account/delete/' + `${id}/${deleteAccountPassword}`, {
-        name: 'dd',
-      }),
+      axios.delete('/api/account/delete/' + `${id}/${deleteAccountPassword}`),
       {
         loading() {
+          document.getElementById(`del-${id}-account-btn`).disabled = true
           return <b>Deleting your data...</b>
         },
         success(response) {
+          document.getElementById(`del-${id}-account-btn`).disabled = false
           router.push('/login')
           return <b>{response.data.message}</b>
         },
@@ -92,6 +92,7 @@ export default function ProfilePage() {
       />
       <DeleteAccount
         value={deleteAccountPassword}
+        id={user._id}
         onChange={(e) => setDeleteAccountPassword(e.target.value)}
         onSubmit={(e) => {
           e.preventDefault()

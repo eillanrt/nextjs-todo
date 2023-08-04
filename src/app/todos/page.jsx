@@ -35,7 +35,7 @@ export default function TodoPage() {
     fetchData()
   }, [])
 
-  const addTodo = async (e) => {
+  const addTodo = (e) => {
     e.preventDefault()
 
     toast.promise(axios.post('/api/todos', { name: todoValue }), {
