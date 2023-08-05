@@ -83,8 +83,8 @@ export default function TodoPage() {
     })
   }
 
-  const onDone = async (id) => {
-    const response = await axios.put('/api/todos/done/' + id)
+  const onDone = async (id, e) => {
+    e.target.disabled = true
 
     setTodos((prev) => {
       return prev.map((todo) => {
@@ -97,6 +97,8 @@ export default function TodoPage() {
         return todo
       })
     })
+    await axios.put('/api/todos/done/' + id)
+    e.target.disabled = false
   }
 
   const onLogout = () => {
@@ -145,7 +147,7 @@ export default function TodoPage() {
               id={todo._id}
               name={todo.name}
               done={todo.done}
-              onDone={() => onDone(todo._id)}
+              onDone={(e) => onDone(todo._id, e)}
               onDelete={() => deleteTodo(todo._id)}
             />
           ))
