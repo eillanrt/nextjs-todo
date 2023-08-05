@@ -1,6 +1,10 @@
+import { forwardRef } from 'react'
 import './styles.css'
 
-export function DeleteAccount({ id, onSubmit, onChange, value }) {
+export const DeleteAccount = forwardRef(function DeleteAccount(
+  { id, onSubmit, onChange, value },
+  ref
+) {
   return (
     <div className="delete-account-wrap">
       <h1>Delete your account</h1>
@@ -21,6 +25,7 @@ export function DeleteAccount({ id, onSubmit, onChange, value }) {
             className="password"
           />
           <button
+            ref={ref}
             type="submit"
             id={`del-${id}-account-btn`}
             className="delete-account-button"
@@ -31,4 +36,4 @@ export function DeleteAccount({ id, onSubmit, onChange, value }) {
       </form>
     </div>
   )
-}
+})

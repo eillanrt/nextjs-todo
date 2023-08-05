@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Header } from '../components/Header'
 import { NavLinks } from '../components/NavLinks'
 import { ProfileLink } from '../components/ProfileLink'
@@ -14,6 +14,8 @@ import { formatMongooseTimestamp } from '@/formatMongooseTimestamp'
 
 export default function ProfilePage() {
   const router = useRouter()
+  const deleteAccountBtnRef = useRef()
+
   const [user, setUser] = useState({})
   const [todos, setTodos] = useState([])
   const [deleteAccountPassword, setDeleteAccountPassword] = useState('')
@@ -48,33 +50,23 @@ export default function ProfilePage() {
     })
   }
 
-  const onDeleteAccount = (e) => {
+  const onDeleteAccount = async (e) => {
     e.preventDefault()
-    const deleteAccountBtn = document.getElementById(
-      `del-${user._id}-account-btn`
-    )
 
-    toast.promise(
-      axios.delete(
-        '/api/account/delete/' + `${user._id}/${deleteAccountPassword}`
-      ),
-      {
-        loading() {
-          deleteAccountBtn.disabled = true
-          return <b>Deleting your data...</b>
-        },
-        success(response) {
-          deleteAccountBtn.disabled = false
-          router.push('/login')
-          return <b>{response.data.message}</b>
-        },
-        error(err) {
-          deleteAccountBtn.disabled = false
+    const deleteAccAPI =
+      '/api/account/delete/' + `${user._id}/${deleteAccountPassword}`
+    deleteAccountBtnRef.current.disabled = true
 
-          return <b>{err.response.data.error}</b>
-        },
-      }
-    )
+    try {
+      const response = await axios.delete(deleteAccAPI)
+
+      toast.success(<b>{response.data.message}</b>)
+      router.push('/login')
+    } catch (error) {
+      toast.error(<b>{error.response.data.error}</b>)
+    } finally {
+      deleteAccountBtnRef.current.disabled = false
+    }
   }
 
   return (
@@ -101,6 +93,7 @@ export default function ProfilePage() {
       />
       <DeleteAccount
         value={deleteAccountPassword}
+        ref={deleteAccountBtnRef}
         id={user._id}
         onChange={(e) => setDeleteAccountPassword(e.target.value)}
         onSubmit={onDeleteAccount}
