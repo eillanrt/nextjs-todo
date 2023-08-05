@@ -7,11 +7,7 @@ export function middleware(request) {
 
   const isPublicPath = publicPaths.includes(path)
 
-  if (path === '/' && token) {
-    return NextResponse.redirect(new URL('/todos', request.nextUrl))
-  }
-
-  if (isPublicPath && token) {
+  if ((path === '/' || isPublicPath) && token) {
     return NextResponse.redirect(new URL('/todos', request.nextUrl))
   }
 
