@@ -45,9 +45,9 @@ html {
   margin: 0 0 6px 12px;
 }
 .main-form-wrapper #name,
-#password,
-#email,
-.password {
+.main-form-wrapper #password,
+.main-form-wrapper #email,
+.main-form-wrapper .password {
   padding: 12px;
   margin: 7px 12px;
   font-size: 1rem;
