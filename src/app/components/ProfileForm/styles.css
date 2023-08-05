@@ -161,7 +161,7 @@
 
 /* Media query for screens smaller than 768px */
 @media (max-width: 768px) {
-  .profile-card {
+  .profile-form-wrapper {
     width: 100%;
   }
 }
