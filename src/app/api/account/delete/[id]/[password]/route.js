@@ -10,8 +10,11 @@ export async function DELETE(request, { params }) {
     const password = params.password
     const userIdofLoggedIn = getUserIdFromToken(request)
 
-    const user = await User.findById(userId)
-    const passwordIsCorrect = await bcrypt.compare(password, user.password)
+    const user = (await User.findById(userId)) || {}
+    const passwordIsCorrect = await bcrypt.compare(
+      password,
+      user.password || ''
+    )
 
     if (userId !== userIdofLoggedIn) {
       throw new Error('Error 400', { cause: 'Not authorized' })
