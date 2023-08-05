@@ -17,7 +17,7 @@ export async function DELETE(request, { params }) {
     )
 
     if (userId !== userIdofLoggedIn) {
-      throw new Error('Error 400', { cause: 'Not authorized' })
+      throw new Error('Error 401', { cause: 'Not authorized' })
     }
 
     if (!passwordIsCorrect) {
