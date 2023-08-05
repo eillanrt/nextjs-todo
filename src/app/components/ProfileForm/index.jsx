@@ -7,11 +7,14 @@ export function ProfileForm({
   joinedAt,
   isVerified,
   todos,
+  fixedUserData,
   onSubmit,
   nameOnChange,
   emailOnChnange,
 }) {
   const doneTodos = todos.filter((todo) => todo.done).length
+  const showSaveBtn =
+    name !== fixedUserData.name || email !== fixedUserData.email
 
   return (
     <div className="profile-form-wrapper">
@@ -40,7 +43,11 @@ export function ProfileForm({
           />
         </div>
         <div>
-          <button className="save-info-btn" type="submit">
+          <button
+            className="save-info-btn"
+            type="submit"
+            disabled={!showSaveBtn}
+          >
             Save
           </button>
         </div>

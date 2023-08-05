@@ -102,6 +102,7 @@ export default function ProfilePage() {
             joinedAt={formatMongooseTimestamp(user.createdAt)}
             id={user._id}
             todos={todos}
+            fixedUserData={userDataFixed}
             onSubmit={updateUserData}
             nameOnChange={(e) => {
               setUser({ ...user, name: e.target.value })
