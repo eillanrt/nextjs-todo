@@ -83,7 +83,7 @@ export default function TodoPage() {
     })
   }
 
-  const onDone = async (id, e) => {
+  const onDone = async (id) => {
     const response = await axios.put('/api/todos/done/' + id)
 
     setTodos((prev) => {
@@ -145,7 +145,7 @@ export default function TodoPage() {
               id={todo._id}
               name={todo.name}
               done={todo.done}
-              onDone={(e) => onDone(todo._id, e)}
+              onDone={() => onDone(todo._id)}
               onDelete={() => deleteTodo(todo._id)}
             />
           ))
