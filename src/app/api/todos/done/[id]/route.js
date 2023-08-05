@@ -2,6 +2,9 @@ import { User } from '@/models/User'
 import { Todo } from '@/models/Todo'
 import { NextResponse } from 'next/server'
 import { getUserIdFromToken } from '@/getUserIdFromToken'
+import { connectDB } from '@/connectDB'
+
+connectDB()
 
 export async function PUT(request, { params }) {
   try {
