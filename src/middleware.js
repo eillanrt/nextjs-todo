@@ -24,5 +24,6 @@ export const config = {
     '/todos',
     '/profile',
     '/api/todos/:path*',
+    '/api/account/:path*',
   ],
 }
