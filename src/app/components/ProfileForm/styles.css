@@ -52,6 +52,9 @@
   font-weight: bold;
 }
 
+.profile-form-wrapper .password-group {
+  flex-direction: column;
+}
 /* Basic styling */
 .save-info-btn {
   display: inline-block;

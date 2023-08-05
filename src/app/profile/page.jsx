@@ -32,7 +32,12 @@ export default function ProfilePage() {
         const { todos, user } = response.data
 
         setTodos(todos)
-        setUser(user)
+        setUser({
+          ...user,
+          password: '',
+          newPassword: '',
+          confirmNewPassword: '',
+        })
         setUserDataFixed(user)
       } catch (error) {
         console.error(error)
@@ -76,7 +81,13 @@ export default function ProfilePage() {
 
   const updateUserData = (e) => {
     e.preventDefault()
-    console.log(user)
+    console.log({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      newPassword: user.newPassword,
+      confirmNewPassword: user.confirmNewPassword,
+    })
   }
 
   return (
@@ -98,6 +109,9 @@ export default function ProfilePage() {
           <ProfileForm
             name={user.name}
             email={user.email}
+            password={user.password}
+            newPassword={user.newPassword}
+            confirmNewPassword={user.confirmNewPassword}
             isVerified={user.isVerified}
             joinedAt={formatMongooseTimestamp(user.createdAt)}
             id={user._id}
@@ -107,8 +121,17 @@ export default function ProfilePage() {
             nameOnChange={(e) => {
               setUser({ ...user, name: e.target.value })
             }}
-            emailOnChnange={(e) => {
+            emailOnChange={(e) => {
               setUser({ ...user, email: e.target.value })
+            }}
+            currentPasswordOnChange={(e) => {
+              setUser({ ...user, password: e.target.value })
+            }}
+            newPasswordOnChange={(e) => {
+              setUser({ ...user, newPassword: e.target.value })
+            }}
+            confirmNewPasswordOnChange={(e) => {
+              setUser({ ...user, confirmNewPassword: e.target.value })
             }}
           />
           <DeleteAccount

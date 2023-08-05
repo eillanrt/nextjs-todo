@@ -3,6 +3,9 @@ import './styles.css'
 export function ProfileForm({
   name,
   email,
+  password,
+  newPassword,
+  confirmNewPassword,
   id,
   joinedAt,
   isVerified,
@@ -10,11 +13,19 @@ export function ProfileForm({
   fixedUserData,
   onSubmit,
   nameOnChange,
-  emailOnChnange,
+  emailOnChange,
+  currentPasswordOnChange,
+  newPasswordOnChange,
+  confirmNewPasswordOnChange,
 }) {
   const doneTodos = todos.filter((todo) => todo.done).length
   const showSaveBtn =
-    name !== fixedUserData.name || email !== fixedUserData.email
+    name !== fixedUserData.name ||
+    email !== fixedUserData.email ||
+    (password !== '' &&
+      newPassword == confirmNewPassword &&
+      newPassword !== '' &&
+      confirmNewPassword !== '')
 
   return (
     <div className="profile-form-wrapper">
@@ -39,9 +50,46 @@ export function ProfileForm({
             name="email"
             placeholder="Email address"
             value={email}
-            onChange={emailOnChnange}
+            onChange={emailOnChange}
           />
         </div>
+        <div className="password-group">
+          <div>
+            <label htmlFor="current-password">Current password</label>
+            <input
+              type="password"
+              id="current-password"
+              name="current-password"
+              value={password}
+              placeholder="Your current password"
+              onChange={currentPasswordOnChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="new-password">New password</label>
+            <input
+              type="password"
+              id="new-password"
+              name="new-password"
+              value={newPassword}
+              placeholder="Your new password"
+              onChange={newPasswordOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="confirm-new-password">Confirm new password</label>
+            <input
+              type="password"
+              id="confirm-new-password"
+              name="confirm-new-password"
+              value={confirmNewPassword}
+              placeholder="Confirm password"
+              onChange={confirmNewPasswordOnChange}
+            />
+          </div>
+        </div>
+
         <div>
           <button
             className="save-info-btn"
