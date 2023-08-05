@@ -57,15 +57,17 @@ export default function ProfilePage() {
       '/api/account/delete/' + `${user._id}/${deleteAccountPassword}`
     deleteAccountBtnRef.current.disabled = true
 
+    const toastId = toast.loading(<b>Deleting your account</b>)
     try {
       const response = await axios.delete(deleteAccAPI)
 
-      toast.success(<b>{response.data.message}</b>)
       router.push('/login')
+      toast.success(<b>{response.data.message}</b>, { id: toastId })
     } catch (error) {
-      toast.error(<b>{error.response.data.error}</b>)
+      toast.error(<b>{error.response.data.error}</b>, { id: toastId })
     } finally {
       deleteAccountBtnRef.current.disabled = false
+      toast.remove(toastId)
     }
   }
 
