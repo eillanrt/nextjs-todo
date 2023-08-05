@@ -67,7 +67,6 @@ export default function ProfilePage() {
       toast.error(<b>{error.response.data.error}</b>, { id: toastId })
     } finally {
       deleteAccountBtnRef.current.disabled = false
-      toast.remove(toastId)
     }
   }
 

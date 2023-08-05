@@ -19,6 +19,7 @@ export const DeleteAccount = forwardRef(function DeleteAccount(
           </label>
           <input
             type="password"
+            id="password"
             placeholder="Password"
             value={value}
             onChange={onChange}
