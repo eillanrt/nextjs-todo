@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server'
 import { getUserIdFromToken } from '@/getUserIdFromToken'
 import { User } from '@/models/User'
 import { Todo } from '@/models/Todo'
+import { connectDB } from '@/connectDB'
 import bcrypt from 'bcryptjs'
+
+connectDB()
 
 export async function DELETE(request, { params }) {
   try {
