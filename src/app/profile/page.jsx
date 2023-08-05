@@ -48,20 +48,29 @@ export default function ProfilePage() {
     })
   }
 
-  const onDeleteAccount = (id) => {
+  const onDeleteAccount = (e) => {
+    e.preventDefault()
+    const deleteAccountBtn = document.getElementById(
+      `del-${user._id}-account-btn`
+    )
+
     toast.promise(
-      axios.delete('/api/account/delete/' + `${id}/${deleteAccountPassword}`),
+      axios.delete(
+        '/api/account/delete/' + `${user._id}/${deleteAccountPassword}`
+      ),
       {
         loading() {
-          document.getElementById(`del-${id}-account-btn`).disabled = true
+          deleteAccountBtn.disabled = true
           return <b>Deleting your data...</b>
         },
         success(response) {
-          document.getElementById(`del-${id}-account-btn`).disabled = false
+          deleteAccountBtn.disabled = false
           router.push('/login')
           return <b>{response.data.message}</b>
         },
         error(err) {
+          deleteAccountBtn.disabled = false
+
           return <b>{err.response.data.error}</b>
         },
       }
@@ -94,10 +103,7 @@ export default function ProfilePage() {
         value={deleteAccountPassword}
         id={user._id}
         onChange={(e) => setDeleteAccountPassword(e.target.value)}
-        onSubmit={(e) => {
-          e.preventDefault()
-          onDeleteAccount(user._id)
-        }}
+        onSubmit={onDeleteAccount}
       />
     </div>
   )
