@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
-import '../styles/form-main.css'
 
 export default function LoginPage() {
   const router = useRouter()
