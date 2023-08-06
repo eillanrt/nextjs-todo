@@ -29,6 +29,7 @@ export async function PATCH(request) {
         throw new Error('Error 400', { cause: 'Email address alreay taken' })
       }
       user.email = email
+      user.isVerified = false
     }
 
     if (password !== '') {
