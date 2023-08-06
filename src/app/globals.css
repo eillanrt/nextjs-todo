@@ -77,6 +77,13 @@ html {
   cursor: pointer;
 }
 
+.message-box {
+  width: 480px;
+  margin: 200px auto;
+  border: solid black 1px;
+  padding: 20px;
+}
+
 .main-form-wrapper button[type='submit']:hover {
   background-color: #43a047; /* Darker green */
   color: white;
