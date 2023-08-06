@@ -54,10 +54,10 @@ export default function TodoPage() {
     })
   }
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id, e) => {
     toast.promise(axios.delete('/api/todos/delete/' + id), {
       loading() {
-        document.getElementById(`del-${id}-btn`).disabled = true
+        e.target.disabled = true
         return <b>Deleting...</b>
       },
       success(response) {
@@ -148,7 +148,7 @@ export default function TodoPage() {
               name={todo.name}
               done={todo.done}
               onDone={(e) => onDone(todo._id, e)}
-              onDelete={() => deleteTodo(todo._id)}
+              onDelete={(e) => deleteTodo(todo._id, e)}
             />
           ))
         )}
