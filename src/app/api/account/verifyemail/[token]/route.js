@@ -20,8 +20,12 @@ export async function PATCH(request, { params }) {
     const userId = getUserIdFromToken(request)
     const user = await User.findById(userId)
 
-    if (user._id !== tokenUser._id) {
+    if (user._id.toString() !== tokenUser._id.toString()) {
       throw new Error('Error 401', { cause: 'Not authorized' })
+    }
+
+    if (user.isVerified) {
+      throw new Error('Error 400', { cause: 'User is already verified' })
     }
 
     user.isVerified = true
@@ -33,7 +37,6 @@ export async function PATCH(request, { params }) {
       verifiedUser,
     })
   } catch (error) {
-    console.log(error)
     // If error is from the user side
     const userErrorPattern = /^Error (4\d{2})/
 
