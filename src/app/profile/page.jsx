@@ -127,9 +127,9 @@ export default function ProfilePage() {
             password={user.password}
             newPassword={user.newPassword}
             confirmNewPassword={user.confirmNewPassword}
-            isVerified={user.isVerified}
-            joinedAt={formatMongooseTimestamp(user.createdAt)}
-            id={user._id}
+            isVerified={userDataFixed.isVerified}
+            joinedAt={formatMongooseTimestamp(userDataFixed.createdAt)}
+            id={userDataFixed._id}
             todos={todos}
             fixedUserData={userDataFixed}
             onSubmit={updateUserData}
