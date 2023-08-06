@@ -8,25 +8,23 @@ export default function ForgotPasswordPage() {
   const submitBtnRef = useRef()
   const [email, setEmail] = useState('')
 
-  const submitEmail = (e) => {
+  const submitEmail = async (e) => {
     e.preventDefault()
 
-    toast.promise(axios.post('/api/forgotpassword/generate', { email }), {
-      loading() {
-        submitBtnRef.current.disabled = true
-        return <b>Loading...</b>
-      },
-      success(response) {
-        console.log(response.data)
-        submitBtnRef.current.disabled = false
-        return <b>{response.data.message}</b>
-      },
-      error(err) {
-        console.log(err)
-        submitBtnRef.current.disabled = false
-        return <b>{err.response.data.error}</b>
-      },
-    })
+    submitBtnRef.current.disabled = true
+    const toastId = toast.loading(<b>Loading</b>)
+
+    try {
+      const response = await axios.post('/api/forgotpassword/generate', {
+        email,
+      })
+      console.log(response)
+    } catch (err) {
+    } finally {
+      // We wont notify whether or not we actually sent new email to the user for privacy reasons
+      toast.success(<b>Check your email</b>, { id: toastId })
+      submitBtnRef.current.disabled = false
+    }
   }
 
   return (
@@ -47,6 +45,7 @@ export default function ForgotPasswordPage() {
               setEmail(e.target.value)
             }}
             placeholder="Email address"
+            required
           />
           <button
             ref={submitBtnRef}
