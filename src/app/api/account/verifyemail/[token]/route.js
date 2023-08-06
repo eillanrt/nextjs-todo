@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import { User } from '@/models/User'
 import { getUserIdFromToken } from '@/getUserIdFromToken'
+import { connectDB } from '@/connectDB'
+
+connectDB()
 
 export async function PATCH(request, { params }) {
   try {

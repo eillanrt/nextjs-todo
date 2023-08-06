@@ -2,8 +2,11 @@ import { NextResponse } from 'next/server'
 import { User } from '@/models/User'
 import { getUserIdFromToken } from '@/getUserIdFromToken'
 import { generateUUID } from '@/generateUUID'
+import { connectDB } from '@/connectDB'
 import { verifyEmailBody } from '@/emailBody'
 import { sendMail } from '@/mailer'
+
+connectDB()
 
 export async function POST(request) {
   try {

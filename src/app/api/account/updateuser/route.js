@@ -1,8 +1,11 @@
 import { getUserIdFromToken } from '@/getUserIdFromToken'
 import { NextResponse } from 'next/server'
 import { User } from '@/models/User'
+import { connectDB } from '@/connectDB'
 import isEmail from 'validator/lib/isEmail'
 import bcrypt from 'bcryptjs'
+
+connectDB()
 
 export async function PATCH(request) {
   try {
