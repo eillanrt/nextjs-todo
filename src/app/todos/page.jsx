@@ -97,7 +97,7 @@ export default function TodoPage() {
         return todo
       })
     })
-    await axios.put('/api/todos/done/' + id)
+    await axios.patch('/api/todos/done/' + id)
     e.target.disabled = false
   }
 

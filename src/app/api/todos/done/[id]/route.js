@@ -6,7 +6,7 @@ import { connectDB } from '@/connectDB'
 
 connectDB()
 
-export async function PUT(request, { params }) {
+export async function PATCH(request, { params }) {
   try {
     const todoId = params.id
     const userId = getUserIdFromToken(request)
