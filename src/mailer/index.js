@@ -28,5 +28,5 @@ export async function sendMail(
     mailOptions.text = body
   }
 
-  await transport.sendMail(mailOptions)
+  return await transport.sendMail(mailOptions)
 }

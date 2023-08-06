@@ -96,8 +96,7 @@ export default function ProfilePage() {
 
     try {
       const response = await axios.post('/api/account/verifyemail/generate')
-      console.log(response)
-      toast.success(<b>{response.data.message}</b>, { id: toastId })
+      toast.success(<b>Check your email</b>, { id: toastId })
     } catch (err) {
       console.error(err)
       toast.error(<b>{err.response.data.error}</b>, { id: toastId })
