@@ -79,15 +79,23 @@ export default function ProfilePage() {
     }
   }
 
-  const updateUserData = (e) => {
+  const updateUserData = async (e) => {
     e.preventDefault()
-    console.log({
-      name: user.name,
-      email: user.email,
-      password: user.password,
-      newPassword: user.newPassword,
-      confirmNewPassword: user.confirmNewPassword,
-    })
+    const toastId = toast.loading(<b>Updating...</b>)
+
+    try {
+      const response = await axios.patch('/api/account/updateuser', {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        newPassword: user.newPassword,
+        confirmNewPassword: user.confirmNewPassword,
+      })
+
+      toast.success(<b>{response.data.message}</b>, { id: toastId })
+    } catch (err) {
+      toast.error(<b>{err.response.data.error}</b>, { id: toastId })
+    }
   }
 
   const onVerifyEmail = async (e) => {
