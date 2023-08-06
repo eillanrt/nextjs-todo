@@ -81,6 +81,8 @@ export default function ProfilePage() {
 
   const updateUserData = async (e) => {
     e.preventDefault()
+    const saveBtn = document.getElementById('save-info-btn')
+    saveBtn.disabled = true
     const toastId = toast.loading(<b>Updating...</b>)
 
     try {
@@ -92,9 +94,12 @@ export default function ProfilePage() {
         confirmNewPassword: user.confirmNewPassword,
       })
 
+      setUserDataFixed(response.data.updatedUser)
       toast.success(<b>{response.data.message}</b>, { id: toastId })
     } catch (err) {
       toast.error(<b>{err.response.data.error}</b>, { id: toastId })
+    } finally {
+      saveBtn.disabled = false
     }
   }
 

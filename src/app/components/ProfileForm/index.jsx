@@ -95,6 +95,7 @@ export function ProfileForm({
           <button
             className="save-info-btn"
             type="submit"
+            id="save-info-btn"
             disabled={!showSaveBtn}
           >
             Save
