@@ -2,11 +2,10 @@ import { NextResponse } from 'next/server'
 import { User } from '@/models/User'
 import { getUserIdFromToken } from '@/getUserIdFromToken'
 
-export async function POST(request) {
+export async function PATCH(request, { params }) {
   try {
     // verify email token
-    const { token } = await request.json()
-    console.log(token)
+    const token = params.token
 
     const tokenUser = await User.findOne({
       verifyToken: token,

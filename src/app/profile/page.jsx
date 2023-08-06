@@ -72,8 +72,8 @@ export default function ProfilePage() {
 
       router.push('/login')
       toast.success(<b>{response.data.message}</b>, { id: toastId })
-    } catch (error) {
-      toast.error(<b>{error.response.data.error}</b>, { id: toastId })
+    } catch (err) {
+      toast.error(<b>{err.response.data.error}</b>, { id: toastId })
     } finally {
       deleteAccountBtnRef.current.disabled = false
     }
@@ -88,6 +88,22 @@ export default function ProfilePage() {
       newPassword: user.newPassword,
       confirmNewPassword: user.confirmNewPassword,
     })
+  }
+
+  const onVerifyEmail = async (e) => {
+    e.target.disabled = true
+    const toastId = toast.loading(<b>Sending email...</b>)
+
+    try {
+      const response = await axios.post('/api/account/verifyemail/generate')
+      console.log(response)
+      toast.success(<b>{response.data.message}</b>, { id: toastId })
+    } catch (err) {
+      console.error(err)
+      toast.error(<b>{err.response.data.error}</b>, { id: toastId })
+    } finally {
+      e.target.disabled = false
+    }
   }
 
   return (
@@ -133,6 +149,7 @@ export default function ProfilePage() {
             confirmNewPasswordOnChange={(e) => {
               setUser({ ...user, confirmNewPassword: e.target.value })
             }}
+            onVerifyEmail={onVerifyEmail}
           />
           <DeleteAccount
             value={deleteAccountPassword}

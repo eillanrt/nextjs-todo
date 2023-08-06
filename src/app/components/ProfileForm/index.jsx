@@ -17,6 +17,7 @@ export function ProfileForm({
   currentPasswordOnChange,
   newPasswordOnChange,
   confirmNewPasswordOnChange,
+  onVerifyEmail,
 }) {
   const doneTodos = todos.filter((todo) => todo.done).length
   const showSaveBtn =
@@ -102,7 +103,7 @@ export function ProfileForm({
       </form>
       {!isVerified && (
         <div className="verify-email-wrapper">
-          <button>Verify email</button>
+          <button onClick={onVerifyEmail}>Verify email</button>
         </div>
       )}
       <ul className="profile-data">
