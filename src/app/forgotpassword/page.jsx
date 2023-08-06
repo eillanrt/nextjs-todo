@@ -2,7 +2,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function ForgotPasswordPage() {
   const submitBtnRef = useRef()
@@ -30,27 +30,36 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="forgot-password-wrapper">
-      <form onSubmit={submitEmail}>
-        <p>Enter the email address linked to your account</p>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value)
-          }}
-          placeholder="Email address"
-        />
-        <button ref={submitBtnRef} type="submit" className="resetpasssword-btn">
-          Reset password
-        </button>
-      </form>
-      <footer>
-        <Link href="/login">Login</Link>
-      </footer>
-    </div>
+    <>
+      <div>
+        <Toaster />
+      </div>
+      <div className="forgot-password-wrapper">
+        <form onSubmit={submitEmail}>
+          <p>Enter the email address linked to your account</p>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value)
+            }}
+            placeholder="Email address"
+          />
+          <button
+            ref={submitBtnRef}
+            type="submit"
+            className="resetpasssword-btn"
+          >
+            Reset password
+          </button>
+        </form>
+        <footer>
+          <Link href="/login">Login</Link>
+        </footer>
+      </div>
+    </>
   )
 }
