@@ -90,6 +90,9 @@ html {
 }
 
 .main-form-wrapper footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   font-size: 0.9rem;
 }
 

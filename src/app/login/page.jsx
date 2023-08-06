@@ -78,7 +78,12 @@ export default function LoginPage() {
         </div>
       </form>
       <footer>
-        No Account? <Link href="/signup">Create One</Link>
+        <div>
+          <Link href="/forgotpassword">Forgot password</Link>
+        </div>
+        <div>
+          <Link href="/signup">Sign up</Link>
+        </div>
       </footer>
     </div>
   )
