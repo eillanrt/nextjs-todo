@@ -4,7 +4,7 @@ import { connectDB } from '@/connectDB'
 import isEmail from 'validator/lib/isEmail'
 import bcrypt from 'bcryptjs'
 
-connectDB()
+// connectDB()
 
 export async function POST(request) {
   try {
