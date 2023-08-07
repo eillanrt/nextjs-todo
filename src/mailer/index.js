@@ -14,6 +14,15 @@ export async function sendMail(
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  })
+
+  transport.verify((error) => {
+    if (error) {
+      throw error
+    }
   })
 
   const mailOptions = {
