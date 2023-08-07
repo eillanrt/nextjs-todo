@@ -1,5 +1,5 @@
 export function verifyEmailBody(user) {
-  const link = process.env.DOMAIN + `/verifyemail?token=${user.verifyToken}`
+  const link = process.env.BASE_URL + `/verifyemail?token=${user.verifyToken}`
 
   return `<!DOCTYPE html>
   <html>

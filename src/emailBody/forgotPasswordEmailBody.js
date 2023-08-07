@@ -1,6 +1,6 @@
 export function forgotPasswordEmailBody(user) {
   const link =
-    process.env.DOMAIN + `/resetpassword?token=${user.forgotPasswordToken}`
+    process.env.BASE_URL + `/resetpassword?token=${user.forgotPasswordToken}`
 
   return `<!DOCTYPE html>
   <html>
@@ -42,7 +42,7 @@ export function forgotPasswordEmailBody(user) {
           <p>We received a request to reset your password. Click the link below to reset your password: <br/> 
           Please note that the link is valid for only 15 minutes.</p>
           <a class="link" href="${link}">Reset Password</a>
-          <p>If the link above doesn't work, try copy and pasting the link below in yor browser<br/>
+          <p>If the link above doesn't work, try copy and pasting the link below in your browser<br/>
           ${link}
           </p>
           <p>If you did not request a password reset, please ignore this email.</p>
