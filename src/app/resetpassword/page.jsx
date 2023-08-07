@@ -45,6 +45,7 @@ export default function ResetPasswordPage() {
 
   const changePassword = async (e) => {
     e.preventDefault()
+    const token = getTokenFromQuery()
 
     toast.promise(
       axios.patch('/api/forgotpassword/resetpassword', {
