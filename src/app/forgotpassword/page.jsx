@@ -18,7 +18,6 @@ export default function ForgotPasswordPage() {
       const response = await axios.post('/api/forgotpassword/generate', {
         email,
       })
-      console.log(response)
     } catch (err) {
     } finally {
       // We wont notify whether or not we actually sent new email to the user for privacy reasons
@@ -35,28 +34,33 @@ export default function ForgotPasswordPage() {
       <div className="forgot-password-wrapper">
         <form onSubmit={submitEmail}>
           <p>Enter the email address linked to your account</p>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
-            placeholder="Email address"
-            required
-          />
-          <button
-            ref={submitBtnRef}
-            type="submit"
-            className="resetpasssword-btn"
-          >
-            Reset password
-          </button>
+          <div>
+            <label htmlFor="email">Email</label>
+            <br />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }}
+              placeholder="Email address"
+              required
+            />
+          </div>
+          <div className="submit-wrapper">
+            <button
+              ref={submitBtnRef}
+              type="submit"
+              className="resetpasssword-btn"
+            >
+              Reset password
+            </button>
+          </div>
         </form>
         <footer>
-          <Link href="/login">Login</Link>
+          <Link href="/login">Log in</Link>
         </footer>
       </div>
     </>

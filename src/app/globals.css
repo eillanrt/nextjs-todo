@@ -100,6 +100,66 @@ html {
   color: black;
 }
 
+.forgot-password-wrapper {
+  margin: 120px auto;
+  width: 480px;
+  padding: 12px;
+  border: solid black 1px;
+}
+
+.forgot-password-wrapper p {
+  text-align: center;
+}
+
+.forgot-password-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
+.forgot-password-wrapper form > div {
+  margin: 12px 0 0;
+}
+
+.forgot-password-wrapper label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 0 0 12px;
+}
+
+.forgot-password-wrapper #email {
+  padding: 12px;
+  width: 100%;
+  margin: 8px 0 0;
+}
+
+.forgot-password-wrapper .submit-wrapper {
+  text-align: center;
+}
+
+.forgot-password-wrapper button {
+  background-color: #2ecc71;
+  color: #fff;
+  border: 1px solid #27ae60;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.forgot-password-wrapper button:hover {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.forgot-password-wrapper footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.forgot-password-wrapper footer a {
+  color: black;
+}
+
 .resetpassword-wrapper {
   margin: 120px auto;
   width: 480px;
@@ -151,6 +211,9 @@ html {
 
 @media only screen and (max-width: 500px) {
   .resetpassword-wrapper {
+    width: 90%;
+  }
+  .forgot-password-wrapper {
     width: 90%;
   }
 }
