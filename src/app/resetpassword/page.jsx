@@ -36,7 +36,7 @@ export default function ResetPasswordPage({ searchParams }) {
     if (token) {
       validateToken()
     }
-  }, [searchParams.token, token])
+  }, [])
 
   const changePassword = async (e) => {
     e.preventDefault()
