@@ -22,25 +22,6 @@ export async function POST(request) {
       throw new Error('Error 404', { cause: 'Account does not exists' })
     }
 
-    let willUpdate = true // We shall only update when we generate new token
-
-    if (
-      user.forgotPasswordToken !== undefined &&
-      user.forgotPasswordTokenExpiry !== undefined
-    ) {
-      if (user.forgotPasswordTokenExpiry > Date.now()) {
-        willUpdate = false
-      }
-    }
-
-    if (!willUpdate) {
-      return NextResponse.json({
-        message: 'Generated forgot password token successfully',
-        didSendNewEmail: false,
-        success: true,
-      })
-    }
-
     user.forgotPasswordToken = generateUUID()
     user.forgotPasswordTokenExpiry = Date.now() + 900_000
     const updatedUser = await user.save()
