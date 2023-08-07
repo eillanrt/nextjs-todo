@@ -100,8 +100,57 @@ html {
   color: black;
 }
 
+.resetpassword-wrapper {
+  margin: 120px auto;
+  width: 480px;
+  padding: 12px;
+  border: solid black 1px;
+}
+
+.resetpassword-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
+.resetpassword-wrapper label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 12px 12px 12px 6px;
+}
+
+.resetpassword-wrapper #new-password,
+.resetpassword-wrapper #confirm-new-password {
+  padding: 12px;
+  width: 100%;
+}
+
+.resetpassword-wrapper form > div {
+  margin: 12px 0 0;
+}
+
+.resetpassword-wrapper .submit-reset-password {
+  background-color: #2ecc71;
+  color: #fff;
+  border: 1px solid #27ae60;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resetpassword-wrapper .submit-reset-password:hover {
+  background-color: #27ae60;
+  color: #fff;
+}
+
 @media only screen and (max-width: 510px) {
   .main-form-wrapper {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .resetpassword-wrapper {
     width: 90%;
   }
 }
