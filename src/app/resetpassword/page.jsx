@@ -78,7 +78,7 @@ export default function ResetPasswordPage() {
     toRender = <div>Token is invalid.</div>
   } else {
     toRender = (
-      <form onSubmit={changePassword}>
+      <form>
         <div>
           <label htmlFor="new-password">New Password</label>
           <br />
@@ -128,6 +128,7 @@ export default function ResetPasswordPage() {
         <div>
           <button
             ref={submitBtnRef}
+            onClick={changePassword}
             type="submit"
             className="submit-reset-password"
             disabled={
