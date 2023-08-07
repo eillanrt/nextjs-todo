@@ -10,8 +10,8 @@ export async function connectDB() {
       console.log('Connected to mongodb successsfully')
     })
 
-    connection.on('error', () => {
-      console.error('Mongodb error')
+    connection.on('error', (err) => {
+      console.error(err)
       process.exit(1)
     })
   } catch (err) {
