@@ -4,37 +4,42 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
 
-export default function ResetPasswordPage({ searchParams }) {
+export default function ResetPasswordPage() {
   const router = useRouter()
   const submitBtnRef = useRef()
+
   const [passwords, setPasswords] = useState({
     currentPassword: '',
     newPassword: '',
   })
-  const [token, setToken] = useState('')
+
+  const [isValidToken, setIsValidToken] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
   const [showNewPassword, setShowNewPasword] = useState(false)
   const [showConfirmNewPassword, setShowConfirmPassword] = useState(false)
-  const [tokenIsValid, setTokenIsValid] = useState('looding')
+
+  const getTokenFromQuery = () => {
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get('token')
+  }
 
   useEffect(() => {
-    if (!searchParams.token) {
-      setTokenIsValid(false)
-    }
-    setToken(searchParams.token)
-
-    const validateToken = async () => {
-      try {
-        const response = await axios.get(
-          '/api/forgotpassword/validate/' + token
-        )
-
-        setTokenIsValid(true)
-      } catch (err) {
-        setTokenIsValid(false)
-      }
-    }
+    const token = getTokenFromQuery()
     if (token) {
-      validateToken()
+      axios
+        .get('/api/forgotpassword/validate/' + token)
+        .then((response) => {
+          setIsValidToken(true)
+          setIsLoading(false)
+        })
+        .catch((error) => {
+          setErrorMessage('An error occurred while validating the token.')
+          setIsLoading(false)
+        })
+    } else {
+      setErrorMessage('Invalid token')
+      setIsLoading(false)
     }
   }, [])
 
@@ -65,10 +70,12 @@ export default function ResetPasswordPage({ searchParams }) {
 
   let toRender = <></>
 
-  if (tokenIsValid === false) {
-    toRender = <h1>Invalid token</h1>
-  } else if (tokenIsValid === 'loading') {
+  if (isLoading) {
     toRender = <h1>Loading...</h1>
+  }
+
+  if (!isValidToken) {
+    toRender = <div>Token is invalid.</div>
   } else {
     toRender = (
       <form onSubmit={changePassword}>
