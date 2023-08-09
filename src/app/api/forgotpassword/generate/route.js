@@ -11,6 +11,7 @@ connectDB()
 export async function POST(request) {
   try {
     const { email } = await request.json()
+    console.log(email)
 
     if (!isEmail(email)) {
       throw new Error('Error 400', { cause: 'Not a valid email address' })
@@ -21,7 +22,7 @@ export async function POST(request) {
     if (!user) {
       throw new Error('Error 404', { cause: 'Account does not exists' })
     }
-
+    console.log(forgotPasswordEmailBody(user))
     let willUpdate = true // We shall only update when we generate new token
 
     if (
