@@ -16,7 +16,7 @@ export async function POST(request) {
       throw new Error('Error 400', { cause: 'Not a valid email address' })
     }
 
-    const user = await User.findOne({ email: email.toLowerCase().toString() })
+    const user = await User.findOne({ email: email.toLowerCase().trim() })
 
     if (!user) {
       throw new Error('Error 404', { cause: 'Account does not exists' })
