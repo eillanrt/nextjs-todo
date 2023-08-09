@@ -11,7 +11,6 @@ connectDB()
 export async function POST(request) {
   try {
     const { email } = await request.json()
-    console.log(email)
 
     if (!isEmail(email)) {
       throw new Error('Error 400', { cause: 'Not a valid email address' })
@@ -22,7 +21,7 @@ export async function POST(request) {
     if (!user) {
       throw new Error('Error 404', { cause: 'Account does not exists' })
     }
-    console.log(forgotPasswordEmailBody(user))
+
     let willUpdate = true // We shall only update when we generate new token
 
     if (
@@ -45,13 +44,14 @@ export async function POST(request) {
     user.forgotPasswordToken = generateUUID()
     user.forgotPasswordTokenExpiry = Date.now() + 900_000
     const updatedUser = await user.save()
+    const emailBody = await forgotPasswordEmailBody(updatedUser)
 
-    sendMail(
+    await sendMail(
       {
         sender: process.env.EMAIL_USER,
         recipient: updatedUser.email,
         subject: 'RESET PASSWORD',
-        body: forgotPasswordEmailBody(updatedUser),
+        body: emailBody,
       },
       { useHTMLBody: true }
     )

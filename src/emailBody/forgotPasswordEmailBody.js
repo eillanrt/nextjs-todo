@@ -1,11 +1,11 @@
 import ejs from 'ejs'
-import fs from 'fs'
+import fs from 'fs/promises'
 
-export function forgotPasswordEmailBody(user) {
+export async function forgotPasswordEmailBody(user) {
   const link =
     process.env.BASE_URL + `/resetpassword?token=${user.forgotPasswordToken}`
 
-  const html = fs.readFileSync('./forgotPasswordEmailBody.ejs', {
+  const html = await fs.readFile('src/emailBody/forgotPasswordEmailBody.ejs', {
     encoding: 'utf-8',
     flag: 'r',
   })
