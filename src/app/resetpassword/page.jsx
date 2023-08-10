@@ -34,7 +34,7 @@ export default function ResetPasswordPage() {
           setIsLoading(false)
         })
         .catch((error) => {
-          setErrorMessage('An error occurred while validating the token.')
+          setErrorMessage(error.response.data.error)
           setIsLoading(false)
         })
     } else {
@@ -76,7 +76,7 @@ export default function ResetPasswordPage() {
   }
 
   if (!isValidToken && !isLoading) {
-    toRender = <div>Token is invalid.</div>
+    toRender = <div>{errorMessage}</div>
   } else {
     toRender = (
       <form onSubmit={changePassword}>
