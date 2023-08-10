@@ -53,9 +53,7 @@ export async function PATCH(request) {
       }
 
       const salt = await bcrypt.genSalt(10)
-      const updatedPassword = await bcrypt.hash(newPassword, salt)
-
-      user.password = updatedPassword
+      user.password = await bcrypt.hash(newPassword, salt)
     }
 
     const updatedUser = await user.save()
