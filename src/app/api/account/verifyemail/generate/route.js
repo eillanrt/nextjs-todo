@@ -38,7 +38,7 @@ export async function POST(request) {
     user.verifyTokenExpiry = Date.now() + 900_000
 
     const updatedUser = await user.save()
-    sendMail(
+    await sendMail(
       {
         sender: process.env.EMAIL_USER,
         recipient: user.email,
