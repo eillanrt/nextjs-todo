@@ -44,14 +44,13 @@ export async function POST(request) {
     user.forgotPasswordToken = generateUUID()
     user.forgotPasswordTokenExpiry = Date.now() + 900_000
     const updatedUser = await user.save()
-    const emailBody = forgotPasswordEmailBody(updatedUser)
 
     await sendMail(
       {
         sender: process.env.EMAIL_USER,
         recipient: updatedUser.email,
         subject: 'RESET PASSWORD',
-        body: emailBody,
+        body: forgotPasswordEmailBody(updatedUser),
       },
       { useHTMLBody: true }
     )
