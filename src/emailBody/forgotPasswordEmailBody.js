@@ -1,6 +1,3 @@
-import ejs from 'ejs'
-import fs from 'fs/promises'
-
 export function forgotPasswordEmailBody(user) {
   const link =
     process.env.BASE_URL + `/resetpassword?token=${user.forgotPasswordToken}`
