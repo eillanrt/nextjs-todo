@@ -139,7 +139,7 @@ export default function TodoPage() {
       <div className="todo-container">
         {isLoading && <h1>Loading</h1>}
         {todos.length === 0 && !isLoading ? (
-          <h1>You have no todos</h1>
+          <h1>You have no to dos</h1>
         ) : (
           todos.map((todo, i) => (
             <TodoItem
