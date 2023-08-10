@@ -38,14 +38,12 @@ export async function POST(request) {
     user.verifyTokenExpiry = Date.now() + 900_000
 
     const updatedUser = await user.save()
-    const emailBody = await verifyEmailBody(user)
-
-    await sendMail(
+    sendMail(
       {
         sender: process.env.EMAIL_USER,
         recipient: user.email,
         subject: 'VERIFY YOUR EMAIL',
-        body: emailBody,
+        body: verifyEmailBody(user),
       },
       { useHTMLBody: true }
     )
