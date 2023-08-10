@@ -1,6 +1,6 @@
-export function forgotPasswordEmailBody({ name }) {
+export function forgotPasswordEmailBody({ name, forgotPasswordToken }) {
   const link =
-    process.env.BASE_URL + `/resetpassword?token=${user.forgotPasswordToken}`
+    process.env.BASE_URL + `/resetpassword?token=${forgotPasswordToken}`
 
   return `<div
   style="

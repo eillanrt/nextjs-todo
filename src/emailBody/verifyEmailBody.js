@@ -1,5 +1,5 @@
-export function verifyEmailBody({ name }) {
-  const link = process.env.BASE_URL + `/verifyemail?token=${user.verifyToken}`
+export function verifyEmailBody({ name, verifyToken }) {
+  const link = process.env.BASE_URL + `/verifyemail?token=${verifyToken}`
 
   return `
   <div style="font-family: Arial, sans-serif; background-color: #f1f1f1;">
