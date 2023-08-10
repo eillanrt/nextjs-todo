@@ -4,16 +4,20 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 
-export default function VerifyEmailPage({ searchParams }) {
+export default function VerifyEmailPage() {
   const router = useRouter()
+
+  const getTokenFromQuery = () => {
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get('token')
+  }
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = getTokenFromQuery()
       const toastId = toast.loading(<b>Loading...</b>)
       try {
-        const response = await axios.patch(
-          '/api/account/verifyemail/' + searchParams.token
-        )
+        const response = await axios.patch('/api/account/verifyemail/' + token)
         toast.success(<b>{response.data.message}</b>, {
           id: toastId,
         })
