@@ -8,7 +8,6 @@ connectDB()
 export async function PATCH(request) {
   try {
     const { currentPassword, newPassword, token } = await request.json()
-    console.log({ currentPassword, newPassword, token })
 
     const user = await User.findOne({
       forgotPasswordToken: token,
