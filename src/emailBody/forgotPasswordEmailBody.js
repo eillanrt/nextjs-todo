@@ -1,17 +1,45 @@
 import ejs from 'ejs'
 import fs from 'fs/promises'
 
-export async function forgotPasswordEmailBody(user) {
+export function forgotPasswordEmailBody(user) {
   const link =
     process.env.BASE_URL + `/resetpassword?token=${user.forgotPasswordToken}`
 
-  const html = await fs.readFile('src/emailBody/forgotPasswordEmailBody.ejs', {
-    encoding: 'utf-8',
-    flag: 'r',
-  })
-
-  return ejs.render(html, {
-    name: user.name,
-    link,
-  })
+  return `<div
+  style="
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  "
+>
+  <div style="text-align: center">
+    <h1>Forgot Password</h1>
+  </div>
+  <p>Hello ${user.name}!</p>
+  <p>
+    We received a request to reset your password. Click the link below to reset
+    your password: <br />
+    Please note that the link is valid for only 15 minutes.
+  </p>
+  <a
+    style="display: block; width: 100%; text-align: center; margin: 20px 0"
+    href="${link}"
+    >Reset Password</a
+  >
+  <p>
+    If the link above doesn't work, try copy and pasting the link below in your
+    browser<br />
+    ${link}
+  </p>
+  <p>If you did not request a password reset, please ignore this email.</p>
+  <p>Best regards,<br />Your App Team</p>
+  <div style="text-align: center; margin-top: 20px">
+    <p>© 2023 Your App. All rights reserved.</p>
+  </div>
+</div>
+`
 }

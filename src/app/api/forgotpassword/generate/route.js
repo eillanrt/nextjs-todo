@@ -44,7 +44,7 @@ export async function POST(request) {
     user.forgotPasswordToken = generateUUID()
     user.forgotPasswordTokenExpiry = Date.now() + 900_000
     const updatedUser = await user.save()
-    const emailBody = await forgotPasswordEmailBody(updatedUser)
+    const emailBody = forgotPasswordEmailBody(updatedUser)
 
     await sendMail(
       {
