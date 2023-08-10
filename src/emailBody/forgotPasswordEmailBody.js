@@ -1,4 +1,4 @@
-export function forgotPasswordEmailBody(user) {
+export function forgotPasswordEmailBody({ name }) {
   const link =
     process.env.BASE_URL + `/resetpassword?token=${user.forgotPasswordToken}`
 
@@ -16,7 +16,7 @@ export function forgotPasswordEmailBody(user) {
   <div style="text-align: center">
     <h1>Forgot Password</h1>
   </div>
-  <p>Hello ${user.name}!</p>
+  <p>Hello ${name}!</p>
   <p>
     We received a request to reset your password. Click the link below to reset
     your password: <br />
@@ -35,7 +35,7 @@ export function forgotPasswordEmailBody(user) {
   <p>If you did not request a password reset, please ignore this email.</p>
   <p>Best regards,<br />Your App Team</p>
   <div style="text-align: center; margin-top: 20px">
-    <p>© 2023 Your App. All rights reserved.</p>
+    <p>© ${new Date().getFullYear()} Allan Robert Tan. All rights reserved.</p>
   </div>
 </div>
 `
