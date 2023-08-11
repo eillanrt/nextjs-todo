@@ -62,7 +62,6 @@ export default function ResetPasswordPage() {
           return <b>Password changed successfully</b>
         },
         error(err) {
-          console.log(err)
           submitBtnRef.current.disabled = false
           return <b>{err.response.data.error}</b>
         },
