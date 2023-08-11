@@ -39,14 +39,10 @@ export async function POST(request) {
 
     const updatedUser = await user.save()
 
-    const recipient = ['preview', 'production'].includes(process.env.NODE_ENV)
-      ? updatedUser.email
-      : `to@example.com`
-
     await sendMail(
       {
         sender: process.env.EMAIL_FROM,
-        recipient,
+        recipient: updatedUser.email,
         subject: 'VERIFY YOUR EMAIL',
         body: verifyEmailBody(user),
       },

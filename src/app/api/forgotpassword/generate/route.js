@@ -45,14 +45,10 @@ export async function POST(request) {
     user.forgotPasswordTokenExpiry = Date.now() + 900_000
     const updatedUser = await user.save()
 
-    const recipient = ['preview', 'production'].includes(process.env.NODE_ENV)
-      ? updatedUser.email
-      : `to@example.com`
-
     await sendMail(
       {
         sender: process.env.EMAIL_FROM,
-        recipient,
+        recipient: updatedUser.email,
         subject: 'RESET PASSWORD',
         body: forgotPasswordEmailBody(updatedUser),
       },
