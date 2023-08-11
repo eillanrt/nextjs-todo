@@ -10,7 +10,7 @@ export async function sendMail(
   const transport = nodemailer.createTransport({
     host: EMAIL_SERVER,
     port: EMAIL_PORT,
-    secure: NODE_ENV === 'production',
+    secure: NODE_ENV === 'production', // Secure connection during prod; use yahoo SMTP server during production
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
