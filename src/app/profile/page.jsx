@@ -111,7 +111,6 @@ export default function ProfilePage() {
       const response = await axios.post('/api/account/verifyemail/generate')
       toast.success(<b>Check your email</b>, { id: toastId })
     } catch (err) {
-      console.log(err)
       toast.error(<b>{err.response.data.error}</b>, { id: toastId })
     } finally {
       e.target.disabled = false
