@@ -31,9 +31,11 @@ export async function DELETE(request, { params }) {
     const deletedTodos = await Todo.deleteMany({
       _id: { $in: deletedUser.todos },
     })
+
     const response = NextResponse.json({
       message: 'Account deleted successfully',
-      deletedUser,
+      success: true,
+      deletedUserId: deletedUser._id,
       deletedTodos,
     })
 
