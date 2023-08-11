@@ -75,7 +75,7 @@ export default function ProfilePage() {
       router.push('/login')
       toast.success(<b>{response.data.message}</b>, { id: toastId })
     } catch (err) {
-      toast.error(<b>{err.response.data.error}</b>, { id: toastId })
+      toast.error(<b>Incorrect password</b>, { id: toastId })
     } finally {
       deleteAccountBtnRef.current.disabled = false
     }
