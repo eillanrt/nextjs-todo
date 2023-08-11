@@ -19,6 +19,7 @@ export default function ForgotPasswordPage() {
         email,
       })
     } catch (err) {
+      console.log(err)
     } finally {
       // We wont notify whether or not we actually sent new email to the user for privacy reasons
       toast.success(<b>Check your email</b>, { id: toastId })
