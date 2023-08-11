@@ -22,6 +22,8 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
   // the name of the user onload, to prevent change on the header
   const [userDataFixed, setUserDataFixed] = useState({})
+  const [isDeleteAccButtonDisabled, setIsDeleteAccButtonDisabled] =
+    useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -166,8 +168,12 @@ export default function ProfilePage() {
             value={deleteAccountPassword}
             ref={deleteAccountBtnRef}
             id={user._id}
-            onChange={(e) => setDeleteAccountPassword(e.target.value)}
+            onChange={(e) => {
+              setDeleteAccountPassword(e.target.value)
+              setIsDeleteAccButtonDisabled(e.target.value === '')
+            }}
             onSubmit={onDeleteAccount}
+            disabled={isDeleteAccButtonDisabled}
           />
         </>
       ) : (

@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import './styles.css'
 
 export const DeleteAccount = forwardRef(function DeleteAccount(
-  { id, onSubmit, onChange, value },
+  { id, onSubmit, onChange, value, disabled },
   ref
 ) {
   return (
@@ -30,6 +30,7 @@ export const DeleteAccount = forwardRef(function DeleteAccount(
             type="submit"
             id={`del-${id}-account-btn`}
             className="delete-account-button"
+            disabled={disabled}
           >
             Delete my account
           </button>
