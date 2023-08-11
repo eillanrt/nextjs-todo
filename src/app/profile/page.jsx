@@ -63,7 +63,7 @@ export default function ProfilePage() {
     e.preventDefault()
 
     const deleteAccAPI =
-      '/api/account/delete/' + `${user._id}/${deleteAccountPassword}`
+      '/api/account/delete/' + `${userDataFixed._id}/${deleteAccountPassword}`
     deleteAccountBtnRef.current.disabled = true
 
     const toastId = toast.loading(<b>Deleting your account</b>)
