@@ -53,7 +53,7 @@ export async function POST(request) {
 
     return NextResponse.json(
       {
-        message: 'User created',
+        message: 'Account successfully created',
         success: true,
         userId: savedUser._id,
       },
