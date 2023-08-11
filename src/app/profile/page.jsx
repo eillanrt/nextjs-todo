@@ -23,7 +23,7 @@ export default function ProfilePage() {
   // the name of the user onload, to prevent change on the header
   const [userDataFixed, setUserDataFixed] = useState({})
   const [isDeleteAccButtonDisabled, setIsDeleteAccButtonDisabled] =
-    useState(false)
+    useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
