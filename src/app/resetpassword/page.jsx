@@ -73,7 +73,9 @@ export default function ResetPasswordPage() {
 
   if (isLoading) {
     toRender = <h1>Loading...</h1>
-  } else if (!isValidToken && !isLoading) {
+  }
+
+  if (!isValidToken && !isLoading) {
     toRender = <div>{errorMessage}</div>
   } else {
     toRender = (
