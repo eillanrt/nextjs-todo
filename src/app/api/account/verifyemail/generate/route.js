@@ -41,7 +41,7 @@ export async function POST(request) {
 
     const recipient = ['preview', 'production'].includes(process.env.NODE_ENV)
       ? updatedUser.email
-      : `${updatedUser.name} <to@example.com>`
+      : `to@example.com`
 
     await sendMail(
       {
