@@ -9,7 +9,7 @@ export async function sendMail(
   const transport = nodemailer.createTransport({
     host: EMAIL_SERVER,
     port: EMAIL_PORT,
-    secure: true,
+    secure: ['preview', 'production'].includes(process.env.NODE_ENV),
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
