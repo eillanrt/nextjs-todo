@@ -15,6 +15,14 @@ export async function GET(request) {
 
     return NextResponse.json({ user, todos })
   } catch (error) {
+    // If error is from the user side
+    const userErrorPattern = /^Error (4\d{2})/
+
+    if (userErrorPattern.test(error.message)) {
+      const errStatus = Number(error.message.match(userErrorPattern)[1])
+
+      return NextResponse.json({ error: error.cause }, { status: errStatus })
+    }
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
