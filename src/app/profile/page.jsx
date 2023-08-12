@@ -43,6 +43,7 @@ export default function ProfilePage() {
         setUserDataFixed(user)
       } catch (error) {
         console.error(error)
+        router.push(error.response.data.redirect)
       }
     }
     fetchData()
