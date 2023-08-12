@@ -25,22 +25,25 @@ export default function ResetPasswordPage() {
   }
 
   useEffect(() => {
-    const token = getTokenFromQuery()
-    if (token) {
-      axios
-        .get('/api/forgotpassword/validate/' + token)
-        .then((response) => {
+    const validateToken = async () => {
+      const token = getTokenFromQuery()
+
+      if (token) {
+        try {
+          await axios.get('/api/forgotpassword/validate/' + token)
           setIsValidToken(true)
           setIsLoading(false)
-        })
-        .catch((error) => {
+        } catch (error) {
           setErrorMessage(error.response.data.error)
           setIsLoading(false)
-        })
-    } else {
-      setErrorMessage('Invalid token')
-      setIsLoading(false)
+        }
+      } else {
+        setErrorMessage('Invalid token')
+        setIsLoading(false)
+      }
     }
+
+    validateToken()
   }, [])
 
   const changePassword = async (e) => {
