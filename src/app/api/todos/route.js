@@ -8,9 +8,12 @@ connectDB()
 
 export async function GET(request) {
   try {
-    const userId = getUserIdFromToken(request)
-
+    const userId = getUserIdFromToken(request) || undefined
+    console.log(typeof userId)
     const user = await User.findById(userId)
+
+    console.log(user === null)
+
     const todos = await Todo.find({ _id: { $in: user.todos } })
 
     return NextResponse.json({ user, todos })

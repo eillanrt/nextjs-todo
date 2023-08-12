@@ -6,6 +6,6 @@ export function getUserIdFromToken(request) {
     const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN)
     return decodedToken.id
   } catch (error) {
-    throw new Error('Error 401', { cause: 'INVALID USER TOKEN' })
+    console.error(error)
   }
 }
