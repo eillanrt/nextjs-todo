@@ -23,7 +23,7 @@ export async function PATCH(request, { params }) {
     const userId = getUserIdFromToken(request)
     const user = await User.findById(userId)
 
-    if (user._id.toString() !== tokenUser._id.toString()) {
+    if (user?._id.toString() !== tokenUser._id.toString()) {
       throw new Error('Error 401', { cause: 'Not authorized' })
     }
 
