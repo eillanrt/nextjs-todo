@@ -1,22 +1,22 @@
 # [Live production](https://tile-do.netlify.app)
 
 ## Local installation
-1. ### Clone repo
+### Clone repo
 ```
 $ git clone https://github.com/eillanrt/tiledo-app
 ```
 
-2. ### Change into that directory
+### Change into that directory
 ```
 $ cd tiledo-app
 ```
 
-3. ### install dependencies
+### install dependencies
 ```
 $ npm install
 ```
 
-4. ### Setup `.env`
+### Setup `.env`
 #### Example `.env` file
 ```
 MONGODB_URI='mongodb+srv://mongo-db-uri/test'
@@ -51,8 +51,9 @@ const transport = nodemailer.createTransport({
 })
 ```
 
-4. ### Run and open
+### Run and open
 #### Run app
+
 ```
 npm run dev
 ```
