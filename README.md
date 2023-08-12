@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [Live production](https://tile-do.netlify.app)
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Local installation
+1. ### Clone repo
+```
+$ git clone https://github.com/eillanrt/tiledo-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. ### Change into that directory
+```
+$ cd tiledo-app
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. ### install dependencies
+```
+$ npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. ### Setup `.env`
+#### Example `.env` file
+```
+MONGODB_URI='mongodb+srv://mongo-db-uri/test'
+BASE_URL='http://localhost:3000'
+NODE_ENV='development'
+EMAIL_USER='email user here'
+EMAIL_FROM='recipient@example.com'
+EMAIL_PASS='password'
+EMAIL_SERVER='sandbox.smtp.mailtrap.io'
+EMAIL_PORT=2525
+SECRET_TOKEN='secret'
+```
 
-## Learn More
+#### *Note*
+- You can use [Mailtrap](https://mailtrap.io) to test your emails. Create an inbox, get the necessary credentials and inject it to your `.env` file. (Refer to the example `.env` file above)
 
-To learn more about Next.js, take a look at the following resources:
+- Go to [MongoDB](https://mongodb.com) and set your own database up. Inject the MongoDB database URI in to your `.env` file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- The nodemailer transport in `src/mailer/index.js` should be equivalent to
+```js
+const transport = nodemailer.createTransport({
+  host: 'sandbox.smtp.mailtrap.io',
+  port: 2525,
+  secure: false,
+  auth: {
+    user: 'email user here',
+    pass: 'password'
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+})
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. ### Run and open
+#### Run app
+```
+npm run dev
+```
+#### Open your browser and open `http://localhost:3000`
