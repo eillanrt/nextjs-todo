@@ -10,7 +10,7 @@ export async function POST(request) {
   try {
     const { email, password } = await request.json()
 
-    const user = await User.findOne({ email: email.toLowerCase() })
+    const user = await User.findOne({ email: email.toLowerCase().trim() })
     if (!user) {
       throw new Error('Error 400', { cause: 'Account does not exist' })
     }
