@@ -29,7 +29,8 @@ export default function TodoPage() {
         setTodos(todos)
         setUser(user)
       } catch (error) {
-        console.error(error)
+        console.error(error.response)
+        router.push(error.response.data.redirect)
       }
     }
     fetchData()

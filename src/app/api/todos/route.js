@@ -8,11 +8,25 @@ connectDB()
 
 export async function GET(request) {
   try {
-    const userId = getUserIdFromToken(request) || undefined
-    console.log(typeof userId)
+    const userId = getUserIdFromToken(request)
     const user = await User.findById(userId)
 
-    console.log(user === null)
+    if (!user) {
+      const response = NextResponse.json(
+        {
+          error: 'JWT Malformed',
+          redirect: '/',
+        },
+        { status: 401 }
+      )
+
+      response.cookies.set('token', '', {
+        httpOnly: true,
+        expires: new Date(0),
+      })
+
+      return response
+    }
 
     const todos = await Todo.find({ _id: { $in: user.todos } })
 
