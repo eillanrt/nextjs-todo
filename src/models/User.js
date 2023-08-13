@@ -36,7 +36,6 @@ const userSchema = new Schema(
     verifyToken: String,
     verifyTokenExpiry: Date,
     revokeAccountToken: String,
-    revokeAccountTokenExpiry: Date,
   },
   { timestamps: true }
 )
