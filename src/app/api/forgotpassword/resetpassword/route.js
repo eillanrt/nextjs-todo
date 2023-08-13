@@ -42,7 +42,7 @@ export async function PATCH(request) {
     return NextResponse.json({
       message: 'Changed password successfully',
       success: true,
-      updatedUser,
+      updatedUserId: updatedUser._id,
     })
   } catch (error) {
     // If error is from the user side
