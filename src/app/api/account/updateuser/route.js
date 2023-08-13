@@ -4,6 +4,9 @@ import { User } from '@/models/User'
 import { connectDB } from '@/connectDB'
 import isEmail from 'validator/lib/isEmail'
 import bcrypt from 'bcryptjs'
+import { generateUUID } from '@/generateUUID'
+import { sendMail } from '@/mailer'
+import { accountCreatedEmailBody } from '@/emailBody/accountCreatedEmailBody'
 
 connectDB()
 
@@ -33,6 +36,17 @@ export async function PATCH(request) {
       }
       user.email = email
       user.isVerified = false
+      user.revokeAccountToken = generateUUID()
+
+      await sendMail(
+        {
+          sender: process.env.EMAIL_FROM,
+          recipient: user.email,
+          subject: 'Account created using this email',
+          body: accountCreatedEmailBody(user),
+        },
+        { useHTMLBody: true }
+      )
     }
 
     if (password !== '') {

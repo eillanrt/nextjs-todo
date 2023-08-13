@@ -5,6 +5,7 @@ import { sendMail } from '@/mailer'
 import isEmail from 'validator/lib/isEmail'
 import bcrypt from 'bcryptjs'
 import { accountCreatedEmailBody } from '@/emailBody/accountCreatedEmailBody'
+import { generateUUID } from '@/generateUUID'
 
 connectDB()
 
@@ -47,6 +48,7 @@ export async function POST(request) {
       name,
       email,
       password: hashedPassword,
+      revokeAccountToken: generateUUID(),
     })
 
     await newUser.validate()
