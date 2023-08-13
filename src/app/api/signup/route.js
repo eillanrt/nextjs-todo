@@ -1,8 +1,10 @@
 import { User } from '@/models/User'
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/connectDB'
+import { sendMail } from '@/mailer'
 import isEmail from 'validator/lib/isEmail'
 import bcrypt from 'bcryptjs'
+import { accountCreatedEmailBody } from '@/emailBody/accountCreatedEmailBody'
 
 connectDB()
 
@@ -50,6 +52,16 @@ export async function POST(request) {
     await newUser.validate()
 
     const savedUser = await newUser.save()
+
+    await sendMail(
+      {
+        sender: process.env.EMAIL_FROM,
+        recipient: savedUser.email,
+        subject: 'Account successfully created',
+        body: accountCreatedEmailBody(savedUser),
+      },
+      { useHTMLBody: true }
+    )
 
     return NextResponse.json(
       {
