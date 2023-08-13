@@ -1,5 +1,6 @@
-export function accountCreatedEmailBody({ name, unlinkEmailToken }) {
-  const link = process.env.BASE_URL + `/revokeaccount?token=${unlinkEmailToken}`
+export function accountCreatedEmailBody({ name, revokeAccountToken }) {
+  const link =
+    process.env.BASE_URL + `/revokeaccount?token=${revokeAccountToken}`
 
   return `Welcome ${name}
 <div>

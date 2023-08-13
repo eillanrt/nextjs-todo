@@ -34,6 +34,7 @@ export async function PATCH(request, { params }) {
     user.isVerified = true
     user.verifyToken = undefined
     user.verifyTokenExpiry = undefined
+    user.revokeAccountToken = undefined
 
     const verifiedUser = await user.save()
 
