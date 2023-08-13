@@ -55,6 +55,6 @@ const transport = nodemailer.createTransport({
 #### Run app
 
 ```
-npm run dev
+$ npm run dev
 ```
 #### Open your browser and open `http://localhost:3000`
