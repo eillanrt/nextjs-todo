@@ -4,8 +4,7 @@ export async function sendMail(
   { sender, recipient, subject, body },
   { useHTMLBody = false }
 ) {
-  const { EMAIL_SERVER, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, NODE_ENV } =
-    process.env
+  const { EMAIL_SERVER, EMAIL_PORT, EMAIL_USER, EMAIL_PASS } = process.env
 
   const transport = nodemailer.createTransport({
     host: EMAIL_SERVER,
