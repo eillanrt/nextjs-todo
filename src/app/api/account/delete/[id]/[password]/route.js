@@ -28,7 +28,7 @@ export async function DELETE(request, { params }) {
     }
 
     const deletedUser = await User.findByIdAndDelete(userId)
-    const deletedTodos = await Todo.deleteMany({
+    await Todo.deleteMany({
       _id: { $in: deletedUser.todos },
     })
 
@@ -36,7 +36,6 @@ export async function DELETE(request, { params }) {
       message: 'Account deleted successfully',
       success: true,
       deletedUserId: deletedUser._id,
-      deletedTodos,
     })
 
     response.cookies.set('token', '', { httpOnly: true, expires: new Date(0) })
