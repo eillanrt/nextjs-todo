@@ -24,7 +24,7 @@ export async function DELETE(request, { params }) {
     }
 
     if (!passwordIsCorrect) {
-      throw new Error('Error 400', { cause: 'Wrong password' })
+      throw new Error('Error 400', { cause: 'Incorrect password' })
     }
 
     const deletedUser = await User.findByIdAndDelete(userId)
