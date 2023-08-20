@@ -15,7 +15,7 @@ export async function POST(request) {
     const user = await User.findById(userId)
 
     if (!user) {
-      throw new Error('Error 404', { cause: 'User not found' })
+      throw new Error('Error 400', { cause: 'Bad request' })
     }
 
     if (user.isVerified) {
