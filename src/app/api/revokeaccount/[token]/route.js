@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { User } from '@/models/User'
 import { connectDB } from '@/connectDB'
+import { Todo } from '@/models/Todo'
 
 connectDB()
 
@@ -14,6 +15,8 @@ export async function DELETE(request, { params }) {
     if (!deletedAccount) {
       throw new Error('Error 400', { cause: 'Invalid token' })
     }
+
+    await Todo.deleteMany({ _id: { $in: deletedAccount.todos } })
 
     return NextResponse.json({
       message: 'Account revoked successfully',
