@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     })
 
     if (!user) {
-      throw new Error('Error 400', { cause: 'Invalid token' })
+      throw new Error('Error 401', { cause: 'Invalid token' })
     }
 
     return NextResponse.json({
