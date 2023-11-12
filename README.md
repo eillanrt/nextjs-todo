@@ -1,5 +1,3 @@
-# [Live production](https://tile-do.netlify.app)
-
 ## Local installation
 ### Clone repo
 ```
